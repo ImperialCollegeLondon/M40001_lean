@@ -56,6 +56,8 @@ begin
   sorry
 end
 
+#exit
+
 /- In question 4 you must *change the conclusion* to explain
    what you deduced.
 -/
