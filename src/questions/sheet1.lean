@@ -6,75 +6,62 @@ Translated from pdf into Lean by Kevin Buzzard
 -/
 
 -- We are doing classical logic.
-local attribute [instance, priority 1] classical.prop_decidable
+local attribute [instance, priority 10] classical.prop_decidable
 
 /-
 Question 1. Let P and Q be Propositions (that is, true/false statements).
-In lectures we proved that P ∨ Q → Q ∨ P. Prove that P ∧ Q → Q ∧ P. 
+Prove that P ∧ Q → Q ∧ P. 
 -/
 lemma question_one (P Q : Prop) : P ∧ Q → Q ∧ P :=
 begin
-  by_cases h1 : P,
-  by_cases h2 : Q,
-  intros, split, assumption,assumption,
-  intro h, cases h with hP hQ, exfalso, apply h2, exact hQ,
-  intro h, cases h with hP hQ, exfalso, apply h1, exact hP,
+  sorry
 end
+/-
+For question 2, comment out one option and prove the other
+-/
 
-lemma question_one' (P Q : Prop) : P ∧ Q → Q ∧ P :=
+lemma question_2a_true : ∀ P Q : Prop, (P → Q) → (Q → P) :=
 begin
-  intro hPQ,
-  cases hPQ with hP hQ,
-  split,
-    assumption,
-  assumption,
+  sorry
 end
 
-lemma question_two : ¬ (∀ P Q : Prop, (P → Q) → (Q → P)) :=
+lemma question_2a_false : ¬ (∀ P Q : Prop, (P → Q) → (Q → P)) :=
 begin
-  intro h,
-  have h2 := h false true,
-  simp at h2,
-  exact h2,
+  sorry
 end
 
-lemma question_1c (P Q : Prop) : (P ↔ Q) → (Q ↔ P) :=
+lemma question_2b_true (P Q : Prop) : (P ↔ Q) → (Q ↔ P) :=
 begin
-  intro h,
-  cases h with h1 h2,
-  split,
-    assumption,
-  assumption,
+  sorry
 end
 
-lemma question_1c' (P Q : Prop) : (P ↔ Q) → (Q ↔ P) :=
+lemma question_2b_false : ¬ (∀ P Q : Prop, (P ↔ Q) → (Q ↔ P)) :=
 begin
-  intro h,
-  by_cases h1 : P,
-    by_cases h2 : Q,
-    split,
-    intro _,
-    assumption,
-    intro _,
-    assumption,
-    exfalso,
-    apply h2,
-    rw ←h,
-    assumption,
-  by_cases h2 : Q,
-    exfalso,
-    apply h1,
-    rw h,
-    assumption,
-  split,
-    intro hQ, contradiction,
-    intro hP, contradiction,
+  sorry
 end
 
-lemma question_1c'' (P Q : Prop) : (P ↔ Q) → (Q ↔ P) :=
-λ ⟨hP, hQ⟩, ⟨hQ, hP⟩
+lemma question_3_true (P Q R : Prop) 
+  (h1 : Q → P)
+  (h2 : ¬ Q → ¬ R) : 
+R → P :=
+begin
+  sorry
+end
 
-lemma question_2 (P Q R : Prop) : P ∧ (Q ∧ R) ↔ (P ∧ Q) ∧ R :=
+lemma question_3_false : ¬ (∀ P Q R : Prop,  
+  (Q → P) →
+  (¬ Q → ¬ R) → 
+  R → P) :=
+begin
+  sorry
+end
+
+/- In question 4 you must *change the conclusion* to explain
+   what you deduced.
+-/
+
+**TODO**
+lemma question_4 (P Q R : Prop) : P ∧ (Q ∧ R) ↔ (P ∧ Q) ∧ R :=
 begin
   split,
     intro h,
