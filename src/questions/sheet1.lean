@@ -5,15 +5,15 @@ Problem Sheet 1, October 2019.
 This is a Lean file. It can be read with the Lean theorem prover.
 
 You can work on this file online at 
-https://tinyurl.com/Lean-M40001-Sheet1
+https://tinyurl.com/Lean-M40001-Example-Sheet-1
 
 or you can install Lean and its maths library following the
 instructions at
-https://github.com/leanprover-community/mathlib
+https://github.com/leanprover-community/mathlib#installation
 
 There are advantages to installing Lean on your own computer
-(for example it's faster), but it's a lot more hassle than
-just using it online.
+(for example it's faster), but it's more hassle than
+just using it online. 
 
 In the below, delete "sorry" and replace it with some
 tactics which prove the result.
