@@ -10,10 +10,13 @@ Current state: no course notes, but two example sheets.
 
 ## Try the example sheets online
 
-[Sheet 1](https://tinyurl.com/M40001-Lean-sheet1)
-[Sheet 2](https://tinyurl.com/M40001-Lean-sheet2)
-[Sheet 3](https://tinyurl.com/M40001-Lean-sheet3)
-[Sheet 4](https://tinyurl.com/M40001-Lean-sheet4)
+[Sheet 1](https://tinyurl.com/Lean-M40001-Example-Sheet-1)
+
+[Sheet 2](https://tinyurl.com/Lean-M40001-Example-Sheet-2)
+
+[Sheet 3](https://tinyurl.com/Lean-M40001-Example-Sheet-3)
+
+[Sheet 4](https://tinyurl.com/Lean-M40001-Example-Sheet-4)
 
 
 
