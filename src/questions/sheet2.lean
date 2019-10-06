@@ -1,3 +1,9 @@
+/- M4001/40009 problem sheet 2 in Lean
+
+  by Kevin Buzzard
+
+-/
+
 import data.real.basic -- need real numbers for Q5
 
 -- Q1 prove that ∩ is symmetric
