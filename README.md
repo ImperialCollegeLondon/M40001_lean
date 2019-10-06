@@ -10,7 +10,11 @@ Current state: no course notes, but two example sheets.
 
 ## Try the example sheets online
 
-[I'm about to add links]
+https://tinyurl.com/M40001-Sheet1-lean
+https://tinyurl.com/M40001-Sheet2-lean
+https://tinyurl.com/M40001-Sheet3-lean
+https://tinyurl.com/M40001-Sheet4-lean
+
 
 ## Download the project and try the example sheets on your own computer
 
