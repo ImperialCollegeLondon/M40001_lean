@@ -70,6 +70,7 @@ Say P, Q and R are propositions, and we know:
 Can we deduce that R implies P? Comment out one
 option and prove the other. Hint: if you're stuck,
 "apply classical.by_contradiction" sometimes helps.
+classical.by_contradiction is the theorem that ¬ ¬ P → P.
 -/
 
 lemma question_3_true (P Q R : Prop) 
