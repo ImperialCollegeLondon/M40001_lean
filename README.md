@@ -4,7 +4,7 @@ M40001/M40009 is the "introduction to proof" course in the maths department at I
 
 Over time expect course notes and example sheets to appear.
 
-Current state: no course notes, but two example sheets.
+Current state: no course notes, but all four example sheets.
 
 # How to try the example sheets in Lean
 
