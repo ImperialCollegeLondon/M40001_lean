@@ -24,13 +24,10 @@ Current state: no course notes, but all four example sheets.
 
 This only works if you have Lean and mathlib installed. Instructions for installing Lean and mathlib are [here at the mathlib github repository](https://github.com/leanprover-community/mathlib#installation).
 
-If lean and mathlib are installed, then install this project by typing this:
+If lean and mathlib are installed, then change to the directory where you keep your Lean projects, and install it by typing this:
 
 ```
-$ git clone git@github.com:ImperialCollegeLondon/M40001_lean.git
-$ cd M40001_lean
-/M40001_lean$ leanpkg configure
-/M40001_lean$ update-mathlib
+$ leanproject get https://github.com/ImperialCollegeLondon/M40001_lean.git
 ```
 
-Then open the project folder using the "File -> Open Folder" option in VS Code and look in the `src/questions` directory for the problem sheets.
+Open the project in VS Code using the "File -> Open Folder" option in VS Code and selecting the `M40001_lean` directory. Then look in the `src/questions` directory for the problem sheets.
