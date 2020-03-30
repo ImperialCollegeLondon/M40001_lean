@@ -30,4 +30,4 @@ If lean and mathlib are installed, then change to the directory where you keep y
 $ leanproject get https://github.com/ImperialCollegeLondon/M40001_lean.git
 ```
 
-Open the project in VS Code using the "File -> Open Folder" option in VS Code and selecting the `M40001_lean` directory. Then look in the `src/questions` directory for the problem sheets.
+Open the project in VS Code e.g. by selecting `File` -> `Open Folder` and then selecting the `M40001_lean` directory. Then look in the `src/questions` directory for the problem sheets.
