@@ -10,6 +10,8 @@ Current state: no course notes, but all four example sheets.
 
 ## Try the example sheets online
 
+[NB the questions are in the pdf directory of this repository]
+
 [Sheet 1](https://tinyurl.com/Lean-M40001-Example-Sheet-1).
 
 [Sheet 2](https://tinyurl.com/Lean-M40001-Example-Sheet-2).
