@@ -4,7 +4,7 @@ M40001/M40009 is the "introduction to proof" course in the maths department at I
 
 Over time expect course notes and example sheets to appear.
 
-Current state: no course notes, but two example sheets.
+Current state: no course notes, but all four example sheets.
 
 # How to try the example sheets in Lean
 
@@ -14,9 +14,9 @@ Current state: no course notes, but two example sheets.
 
 [Sheet 2](https://tinyurl.com/Lean-M40001-Example-Sheet-2).
 
-[Sheet 3](https://tinyurl.com/Lean-M40001-Example-Sheet-3) (not there yet).
+[Sheet 3](https://tinyurl.com/Lean-M40001-Example-Sheet-3).
 
-[Sheet 4](https://tinyurl.com/Lean-M40001-Example-Sheet-4) (not there yet).
+[Sheet 4](https://tinyurl.com/Lean-M40001-Example-Sheet-4).
 
 
 
@@ -24,13 +24,10 @@ Current state: no course notes, but two example sheets.
 
 This only works if you have Lean and mathlib installed. Instructions for installing Lean and mathlib are [here at the mathlib github repository](https://github.com/leanprover-community/mathlib#installation).
 
-If lean and mathlib are installed, then install this project by typing this:
+If lean and mathlib are installed, then change to the directory where you keep your Lean projects, and install it by typing this:
 
 ```
-$ git clone git@github.com:ImperialCollegeLondon/M40001_lean.git
-$ cd M40001_lean
-/M40001_lean$ leanpkg configure
-/M40001_lean$ update-mathlib
+$ leanproject get https://github.com/ImperialCollegeLondon/M40001_lean.git
 ```
 
-Then open the project folder using the "File -> Open Folder" option in VS Code and look in the `src/questions` directory for the problem sheets.
+Open the project in VS Code e.g. by selecting `File` -> `Open Folder` and then selecting the `M40001_lean` directory. Then look in the `src/questions` directory for the problem sheets.
