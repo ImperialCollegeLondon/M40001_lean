@@ -205,37 +205,6 @@ begin
   exact hP, -- and then we put them back in a different order
 end
 
--- SHALL I MOVE FALSE.ELIM AND DNE?
-
--- useful lemma about false
-theorem false.elim' : false → P :=
-begin
-  -- Let's assume that a false proposition is true. Let's
-  -- call this assumption h.
-  intro h,
-  -- We now have to prove P. 
-  -- The `exfalso` tactic changes any goal to `false`.
-  exfalso,
-  -- Now our goal is an assumption! It's exactly `h`.
-  exact h,
-end
-
--- This one cannot be proved using the tactics we know
--- which are constructive. This one needs the assumption
--- that every LEM blah 
-theorem double_negation_elimination : ¬ (¬ P) → P :=
-begin
-  -- `tauto!` works
-  classical,
-  by_cases hP : P,
-    intro h37,
-    assumption,
-  intro hnnP,
-  exfalso,
-  apply hnnP,
-  exact hP,
-end
-
 /-!
 
 ### and
@@ -289,6 +258,9 @@ begin
   split; assumption
 end
 
+-- the "eliminator for and" -- if you know `P ∧ Q` you
+-- can deduce that something implies something else
+-- with no ands
 theorem and.elim : P ∧ Q → (P → Q → R) → R :=
 begin
   intro hPaQ,
@@ -304,6 +276,17 @@ begin
   apply hPQR; assumption
 end
 
+-- joke proof
+theorem and.elim' : P ∧ Q → (P → Q → R) → R :=
+begin
+  intro hPaQ,
+  intro hPQR,
+  apply and.rec, -- anarchy
+    exact hPQR,
+  exact hPaQ,
+end
+
+
 theorem and.symm : P ∧ Q → Q ∧ P :=
 begin
   -- goal is `⊢ P ∧ Q → Q ∧ P`
@@ -317,6 +300,37 @@ end
 -- term mode proof
 theorem and.symm' : P ∧ Q → Q ∧ P :=
 λ ⟨P, Q⟩, ⟨Q, P⟩
+
+theorem and.trans : (P ∧ Q) → (Q ∧ R) → (P ∧ R) :=
+begin
+  rintro ⟨hP, hQ⟩,
+  rintro ⟨hQ2, hR⟩,
+  split; assumption
+end
+
+/-
+Extra credit
+
+Recall that the convention for the implies sign →
+is that it is _right associative_, by which
+I mean that `P → Q → R` means `P → (Q → R)` by definition.
+This does actually simplify! If `P` implies `Q → R`
+then this means that `P` and `Q` together, imply `R`,
+so `P → Q → R` is logically equivalent to `(P ∧ Q) → R`.
+
+We proved that `P → Q → R` implied `(P ∧ Q) → R`; this was `and.rec`.
+Let's go the other way.
+-/
+
+example : ((P ∧ Q) → R) → (P → Q → R) :=
+begin
+  intro hPaQR,
+  intro hP, 
+  intro hQ,
+  apply hPaQR,
+  split; assumption
+end
+
 
 /-!
 
@@ -348,6 +362,13 @@ begin
   tauto!, -- the "truth table" tactic.
 end
 
+-- refl tactic also works
+def iff.refl'' : P ↔ P :=
+begin
+  refl
+end
+
+
 def iff.symm : (P ↔ Q) → (Q ↔ P) :=
 begin
   -- assume P ↔ Q is true. Call this hypothesis hPiQ.
@@ -362,11 +383,19 @@ begin
   split; assumption,
 end
 
+def iff.symm' : (P ↔ Q) → (Q ↔ P) :=
+begin
+  intro h,
+  -- introduction of the rewrite tactic
+  rw h,
+  -- refl automatically applied
+end
+
 -- Instead of begin/end blocks, which many mathematicians prefer,
 -- one can write proofs in the lambda calculus, with some
 -- computer scientists like better
 
-def iff.symm' : (P ↔ Q) → (Q ↔ P) :=
+def iff.symm'' : (P ↔ Q) → (Q ↔ P) :=
 λ ⟨hPQ, hQP⟩, ⟨hQP, hPQ⟩
 
 -- That's a full proof.
@@ -377,15 +406,43 @@ begin
   apply iff.symm,
 end
 
+-- without rw or cc this is ugly
 def iff.trans :  (P ↔ Q) → (Q ↔ R) → (P ↔ R) :=
 begin
-  sorry
+  rintro ⟨hPQ, hQP⟩,
+  rintro ⟨hQR, hRQ⟩,
+  split, -- split; cc finishes it
+    intro hP,
+    apply hQR,
+    apply hPQ,
+    exact hP,
+  intro hR,
+  apply hQP,
+  apply hRQ,
+  exact hR,
 end
+
+def iff.trans' :  (P ↔ Q) → (Q ↔ R) → (P ↔ R) :=
+begin
+  intro hPiQ,
+  intro hQiR,
+  rw hPiQ,
+  assumption
+end
+
+
+-- Now we have iff we can go back to and.
 
 -- all the rest goes after 
 theorem and_comm : P ∧ Q ↔ Q ∧ P :=
-⟨and.symm _ _, and.symm _ _⟩
+begin
+  split,
+    apply and.symm,
+  apply and.symm
+end
 
+theorem and_comm' : P ∧ Q ↔ Q ∧ P :=
+⟨and.symm _ _, and.symm _ _⟩
 
 -- ∧ is "right associative" in Lean, which means
 -- that `P ∧ Q ∧ R` is _defined to mean_ `P ∧ (Q ∧ R)`.
@@ -399,46 +456,92 @@ begin
     exact ⟨⟨hP, hQ⟩, hR⟩ },  
 end
 
-/-
-Extra credit
 
-In Lean, the convention for the implies sign →
-is that it is _right associative_, by which
-I mean that `P → Q → R` means `P → (Q → R)` by definition.
-This does actually simplify! If `P` implies `Q → R`
-then this means that `P` and `Q` together, imply `R`,
-so `P → Q → R` is logically equivalent to `(P ∧ Q) → R`.
-But actually `→` is considered a more primitive operator
-than `∧` in Lean, and we use `P → Q → R` to mean `(P ∧ Q) → R`
-a lot.
+
+/-!
+
+## Or
+
+`P ∨ Q` is true when at least one of `P` and `Q` are true.
+Here is how to work with `∨` in Lean.
+
+If you have a hypothesis `hPoQ : P ∨ Q` then you 
+can break into the two cases `hP : P` and `hQ : Q` using
+`cases hPoQ with hP hQ`
+
+If you have a _goal_ of the form `⊢ P ∨ Q` then you
+need to decide whether you're going to prove `P` or `Q`.
+If you want to prove `P` then use the `left` tactic,
+and if you want to prove `Q` then use the `right` tactic.
 
 -/
 
-example : (P → Q → R) ↔ ((P ∧ Q) → R) :=
+#check or.assoc
+#check or.cases_on -- or by_cases
+#check or.comm
+#check or.elim
+#check or.imp
+#check or.imp_left
+#check or.imp_right
+#check or.intro_left
+#check or.inr
+#check or.left_comm -- and right_comm
+#check or.rec
+#check or.resolve_left
+
+#check or_congr
+
+theorem or.symm : P ∨ Q → Q ∨ P :=
 begin
-  tauto!,
+  intro hPoQ,
+  cases hPoQ with hP hQ,
+    right, 
+    assumption,
+  left,
+  assumption
 end
 
-example : (P → Q → R) ↔ ((P ∧ Q) → R) :=
+theorem or_comm : P ∨ Q ↔ Q ∨ P :=
 begin
   split,
-    apply and.rec,
-  intro hPaQR,
-  intro hP, 
-  intro hQ,
-  apply hPaQR,
-  split; assumption
+    apply or.symm,
+  apply or.symm
 end
 
 /-!
 
-## Or (unfinished)
+# Classical logic
 
 -/
-#check or.symm
-theorem or_comm : P ∨ Q ↔ Q ∨ P :=
+
+-- useful lemma about false
+theorem false.elim' : false → P :=
 begin
-  sorry
+  -- Let's assume that a false proposition is true. Let's
+  -- call this assumption h.
+  intro h,
+  -- We now have to prove P. 
+  -- The `exfalso` tactic changes any goal to `false`.
+  exfalso,
+  -- Now our goal is an assumption! It's exactly `h`.
+  exact h,
 end
+
+-- This one cannot be proved using the tactics we know
+-- which are constructive. This one needs the assumption
+-- that every LEM blah 
+theorem double_negation_elimination : ¬ (¬ P) → P :=
+begin
+  -- `tauto!` works
+  classical,
+  by_cases hP : P,
+    intro h37,
+    assumption,
+  intro hnnP,
+  exfalso,
+  apply hnnP,
+  exact hP,
+end
+
 
 end xena
