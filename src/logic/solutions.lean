@@ -24,13 +24,14 @@ because every question can be proved by "check all the cases".
 However, there is this cool theorem, that says that if
 a theorem in the basic theory of logical propositions can be proved
 by "check all the cases", then it can be proved in the Lean theorem
-prover using only the tactics `intro`, `apply`, `exact`, `split`,
-`cases`, `have`, `left` and `right`, as well as one extra rule called
-the Law of the excluded middle, which in Lean is the tactic `by_cases`.
-Note that the tactic `tauto!` is a general "check all the cases"
-tactic, and it uses `by_cases`.
+prover using only the eight constructive tactics `intro`, `apply`,
+`exact`, `exfalso`, `split`, `cases`, `left` and `right`,
+as well as one extra rule called the Law of the Excluded Middle,
+which in Lean is the tactic `by_cases`. Note that the tactic `tauto!`
+is a general "check all the cases" tactic, and it uses `by_cases`.
 
 ## Reference
+
 * The first half of section 1 of the M40001/40009 course notes.
 
 -/
