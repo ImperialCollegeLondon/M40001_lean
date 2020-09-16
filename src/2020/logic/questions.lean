@@ -52,7 +52,10 @@ learn the three tactics `intro`, `apply` and `exact`.
 /-- Every proposition implies itself. -/
 def id : P → P :=
 begin
-  /- See that
+  /- 
+  Click here!
+  
+  See that
   
   `⊢ P → P`
 
