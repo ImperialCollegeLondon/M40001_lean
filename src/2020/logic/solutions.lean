@@ -56,21 +56,18 @@ begin
   exact hP,
 end
 
+-- implication isn't associative!
+-- Try it when P, Q, R are all false.
 example : (false → (false → false)) ↔ true := by simp
 example : ((false → false) → false) ↔ false := by simp
 
+-- in Lean, `P → Q → R` is _defined_ to be `P → (Q → R)`
+-- Here's a proof of what I just said.
 example : (P → Q → R) ↔ (P → (Q → R)) :=
 begin
+  -- ⊢ P → Q → R ↔ P → Q → R
   refl
 end
-
-
-/-
-
-In Lean, the convention is that
-the meaning of `P → Q → R` is `P → (Q → R)`.
-
--/
 
 example : P → Q → P :=
 begin
@@ -86,8 +83,8 @@ begin
   exact hP,
 end
 
-/-- A really bad name for a lemma -/
-lemma lemma_one : P → (P → Q) → Q :=
+/-- If we know `P`, and we also know `P → Q`, we can deduce `Q`. -/
+lemma modus_ponens : P → (P → Q) → Q :=
 begin
   -- remember this means "P implies that ((P implies Q) implies Q)"
   -- so let's assume P is true
@@ -102,15 +99,16 @@ begin
   exact hP, -- or `assumption`
 end
 
-
-
--- This next example can be done by checking all the cases
-example : (P → Q → R) → (P → Q) → (P → R) :=
+lemma trans : (P → Q) → (Q → R) → (P → R) :=
 begin
-  tauto!,
+  intros hPQ hQR hP,
+  apply hQR,
+  apply hPQ,
+  exact hP
 end
 
--- but here's a proof that it can be done constructively
+-- This one is a "relative modus ponens" -- in the
+-- presence of P, if Q -> R and Q then R.
 example : (P → Q → R) → (P → Q) → (P → R) :=
 begin
   -- Let `hPQR` be the hypothesis that `P → Q → R`. 
@@ -180,7 +178,7 @@ end
 
 theorem not_not_intro'' : P → ¬ (¬ P) :=
 begin
-  apply lemma_one,
+  apply modus_ponens,
 end
 
 -- lambda calculus proof
@@ -437,7 +435,8 @@ end
 
 -- Now we have iff we can go back to and.
 
--- all the rest goes after 
+/-! ### ↔ and ∧ -/
+
 theorem and_comm : P ∧ Q ↔ Q ∧ P :=
 begin
   split,
@@ -499,6 +498,14 @@ begin
   sorry,
 end
 
+theorem or.elim : P ∨ Q → (P → R) → (Q → R) → R :=
+begin
+  intro h,
+  intros hpq hqr,
+  cases h,
+  sorry, sorry
+end
+
 
 theorem or.symm : P ∨ Q → Q ∨ P :=
 begin
@@ -527,7 +534,10 @@ begin
     { right, left, assumption},
     { right, right, assumption},
     -- don't get lost. Hover over `rintro` to see the docs.
-  sorry
+  rintro (hP | hQ | hR),
+    { left, left, assumption},
+    { left, right, assumption},
+    { right, assumption},  
 end
 
 theorem or.cases_on : P ∨ Q → (P → R) → (Q → R) → R :=
@@ -536,44 +546,55 @@ begin
   cc,cc,
 end
 
-theorem or.elim : P ∨ Q → (P → R) → (Q → R) → R :=
-begin
-  sorry,
-end
+
 
 theorem or.imp : (P → R) → (Q → S) → P ∨ Q → R ∨ S :=
 begin
-  sorry,
+  rintros hPR hQS (hP | hQ),
+    left, cc,
+  right, cc
 end
 
 theorem or.imp_left : (P → Q) → P ∨ R → Q ∨ R :=
 begin
-  sorry,
+  rintros hPQ (hP | hR),
+    left, cc,
+    right, assumption
 end
 
 theorem or.imp_right : (P → Q) → R ∨ P → R ∨ Q :=
 begin
-  sorry,
+  rintros hPQ (hP | hR),
+    left, cc,
+    right, cc,
 end
 
 theorem or.left_comm : P ∨ Q ∨ R ↔ Q ∨ P ∨ R :=
 begin
-  sorry,
+  rw or.comm,
+  rw or.assoc,
+  rw or.comm R,
+  -- (refl)
 end
 
 theorem or.rec : (P → R) → (Q → R) → P ∨ Q → R :=
 begin
-  sorry,
+  rintros _ _ (_ | _);
+  cc
 end
 
 theorem or.resolve_left : P ∨ Q → ¬P → Q :=
 begin
-  sorry,
+  rintros (hP | hQ) hnP,
+    contradiction,
+  assumption
 end
 
 theorem or_congr : (P ↔ R) → (Q ↔ S) → (P ∨ Q ↔ R ∨ S) :=
 begin
-  sorry,
+  rintros hPR hQS,
+  rw hPR,
+  rw hQS,
 end
 
 theorem or_false : P ∨ false ↔ P :=
@@ -581,9 +602,6 @@ begin
   simp,
 end
 
-
-#check or_true
-#check or_not
 
 /-!
 
