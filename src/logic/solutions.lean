@@ -11,10 +11,9 @@ import tactic
 A Lean companion to the "Logic" part of the intro module.
 
 We develop the basic theory of the five symbols
-∧, ∨, ¬, → and ↔ in Lean
+→, ¬, ∧, ↔, ∨
 
-We do them in the following order: 
-→, ¬, ∧, ↔, ∨ (possibly)
+(in that order)
 
 # Background
 
@@ -26,7 +25,7 @@ However, there is this cool theorem, that says that if
 a theorem in the basic theory of logical propositions can be proved
 by "check all the cases", then it can be proved in the Lean theorem
 prover using only the eight constructive tactics `intro`, `apply`,
-`exact`, `exfalso`, `split`, `cases`, `left` and `right`,
+`assumption`, `exfalso`, `split`, `cases`, `have`, `left` and `right`,
 as well as one extra rule called the Law of the Excluded Middle,
 which in Lean is the tactic `by_cases`. Note that the tactic `finish`
 is a general "check all the cases" tactic, and it uses `by_cases`.
