@@ -8,16 +8,17 @@ import tactic
 /-!
 # Logic
 
+A Lean companion to the "Logic" part of the intro module.
+
 We develop the basic theory of the five symbols
 ∧, ∨, ¬, → and ↔ in Lean
 
 We do them in the following order: 
 →, ¬, ∧, ↔, ∨ (possibly)
 
-
 # Background
 
-It is impossible to ask you difficult questions
+It is hard to ask you difficult questions
 about the basic theory of these logical operators,
 because every question can be proved by "check all the cases".
 
@@ -27,7 +28,7 @@ by "check all the cases", then it can be proved in the Lean theorem
 prover using only the eight constructive tactics `intro`, `apply`,
 `exact`, `exfalso`, `split`, `cases`, `left` and `right`,
 as well as one extra rule called the Law of the Excluded Middle,
-which in Lean is the tactic `by_cases`. Note that the tactic `tauto!`
+which in Lean is the tactic `by_cases`. Note that the tactic `finish`
 is a general "check all the cases" tactic, and it uses `by_cases`.
 
 ## Reference
@@ -55,15 +56,6 @@ begin
   -- then we know that P is true by hypothesis hP.
   exact hP,
 end
-#eval (6-2)-1 -- 3
-#eval 6-(2-1) -- 5
-#eval 6-2-1 -- 3
--- so 6-2-1 means (6-2)-1
-
-#eval (2^1)^3 -- 8
-#eval 2^(1^3) -- 2
-#eval 2^1^3 -- 2
--- so 2^1^3 means 2^(1^3)
 
 example : (false → (false → false)) ↔ true := by simp
 example : ((false → false) → false) ↔ false := by simp
@@ -75,27 +67,9 @@ end
 
 
 /-
-Here's a funny thing.
 
-Get a computer or some kind of app (*not* pencil and paper)
-and try evaluating these two things:
-
-1) `6-2-1`
-2) `2^1^3`
-
-Most apps will tell you that `6-2-1=3` because `6-2=4` and then `4-1=3`.
-In other words, they interpreted your input `6-2-1` as `(6-2)-1`.
-
-However, most apps, when you ask them `2^1^3` (in python it's `2 ** 1 ** 3`
-by the way), will tell you `2` and not `8`, because human convention
-has said that `x^y^z` is defined to mean `x^(y^z)`. The reason this
-is a clever idea is that we can write things like 10^{10^{10}} in LaTeX
-and not have to fuss about where to put the brackets; if we meant
-(10^10)^10 we would just have written 10^100. 
-
-In Lean, they chose following convention for → : 
-
-Convention : the meaning of `P → Q → R` is `P → (Q → R)`.
+In Lean, the convention is that
+the meaning of `P → Q → R` is `P → (Q → R)`.
 
 -/
 
@@ -449,6 +423,18 @@ begin
   assumption
 end
 
+def iff.boss : ¬ (P ↔ ¬ P) :=
+begin
+  rintro ⟨h1, h2⟩,
+  have hnp : ¬ P,
+    intro hP,
+    apply h1; assumption,
+  apply hnp,
+  apply h2,
+  exact hnp,
+
+
+end
 
 -- Now we have iff we can go back to and.
 
@@ -495,20 +481,25 @@ and if you want to prove `Q` then use the `right` tactic.
 
 -/
 
-#check or.assoc
-#check or.cases_on -- or by_cases
-#check or.comm
-#check or.elim
-#check or.imp
-#check or.imp_left
-#check or.imp_right
-#check or.intro_left
-#check or.inr
-#check or.left_comm -- and right_comm
-#check or.rec
-#check or.resolve_left
+-- recall that P, Q, R are Propositions. We'll need S for this one.
+variable (S : Prop)
 
-#check or_congr
+-- use the `left` tactic to reduce from `⊢ P ∨ Q` to `⊢ P`
+theorem or.intro_left : P → P ∨ Q :=
+begin
+  intro hP,
+  -- ⊢ P ∨ Q
+  left,
+  -- ⊢ P
+  exact hP
+end
+
+-- use the `right` tactic to reduce from `⊢ P ∨ Q`
+theorem or.intro_right : Q → P ∨ Q :=
+begin
+  sorry,
+end
+
 
 theorem or.symm : P ∨ Q → Q ∨ P :=
 begin
@@ -520,12 +511,80 @@ begin
   assumption
 end
 
-theorem or_comm : P ∨ Q ↔ Q ∨ P :=
+theorem or.comm : P ∨ Q ↔ Q ∨ P :=
 begin
   split,
     apply or.symm,
   apply or.symm
 end
+
+-- good luck!
+
+theorem or.assoc : (P ∨ Q) ∨ R ↔ P ∨ Q ∨ R :=
+begin
+  split,
+    rintro (⟨hP | hQ⟩ | hR),
+    { left, assumption},
+    { right, left, assumption},
+    { right, right, assumption},
+    -- don't get lost. Hover over `rintro` to see the docs.
+  sorry
+end
+
+theorem or.cases_on : P ∨ Q → (P → R) → (Q → R) → R :=
+begin
+  rintro (hP | hQ),
+  cc,cc,
+end
+
+theorem or.elim : P ∨ Q → (P → R) → (Q → R) → R :=
+begin
+  sorry,
+end
+
+theorem or.imp : (P → R) → (Q → S) → P ∨ Q → R ∨ S :=
+begin
+  sorry,
+end
+
+theorem or.imp_left : (P → Q) → P ∨ R → Q ∨ R :=
+begin
+  sorry,
+end
+
+theorem or.imp_right : (P → Q) → R ∨ P → R ∨ Q :=
+begin
+  sorry,
+end
+
+theorem or.left_comm : P ∨ Q ∨ R ↔ Q ∨ P ∨ R :=
+begin
+  sorry,
+end
+
+theorem or.rec : (P → R) → (Q → R) → P ∨ Q → R :=
+begin
+  sorry,
+end
+
+theorem or.resolve_left : P ∨ Q → ¬P → Q :=
+begin
+  sorry,
+end
+
+theorem or_congr : (P ↔ R) → (Q ↔ S) → (P ∨ Q ↔ R ∨ S) :=
+begin
+  sorry,
+end
+
+theorem or_false : P ∨ false ↔ P :=
+begin
+  simp,
+end
+
+
+#check or_true
+#check or_not
 
 /-!
 
