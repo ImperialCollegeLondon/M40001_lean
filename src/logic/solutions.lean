@@ -54,6 +54,24 @@ begin
   -- then we know that P is true by hypothesis hP.
   exact hP,
 end
+#eval (6-2)-1 -- 3
+#eval 6-(2-1) -- 5
+#eval 6-2-1 -- 3
+-- so 6-2-1 means (6-2)-1
+
+#eval (2^1)^3 -- 8
+#eval 2^(1^3) -- 2
+#eval 2^1^3 -- 2
+-- so 2^1^3 means 2^(1^3)
+
+example : (false → (false → false)) ↔ true := by simp
+example : ((false → false) → false) ↔ false := by simp
+
+example : (P → Q → R) ↔ (P → (Q → R)) :=
+begin
+  refl
+end
+
 
 /-
 Here's a funny thing.
