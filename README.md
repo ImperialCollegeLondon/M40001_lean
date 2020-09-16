@@ -31,10 +31,10 @@ Here are the 2019 sheets:
 This only works if you have Lean and mathlib installed. Instructions for installing Lean and mathlib are
 [here at the Leanprover community website](https://leanprover-community.github.io/get_started.html#regular-install).
 
-If lean and mathlib are installed, then change to the directory where you keep your Lean projects, and install it by typing this into the command line (perhaps in a directory where you want to keep your Lean projects).
+If lean and mathlib are installed, then change to the directory where you keep your Lean projects, and install this project by typing this line into the command line (perhaps in a directory where you want to keep your Lean projects).
 
 ```
 $ leanproject get https://github.com/ImperialCollegeLondon/M40001_lean
 ```
 
-Open the project in VS Code e.g. by selecting `File` -> `Open Folder` and then selecting the `M40001_lean` directory. Then look in the `src/questions` directory for the problem sheets.
+Then open the project in VS Code e.g. by selecting `File` -> `Open Folder` and then selecting the `M40001_lean` directory. Then look in the `src/questions` directory for the problem sheets.
