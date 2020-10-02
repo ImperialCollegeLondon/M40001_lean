@@ -27,17 +27,9 @@ begin
   refl
 end
 
--- make some pdf notes with URLs
-example : ∀ p q r : bool,
-  p && (q || r) = (p && q) || (p && r)
-:=
-begin
-  intros,
-  cases p;
-  cases q;
-  cases r;
-  refl
-end
+#find bool → bool → bool
+-- afterwards change an and to an or,
+-- note that it breaks.
 
 /-
 Very boring proofs.
@@ -107,13 +99,28 @@ begin
 end
 -- then remove bracket at the top
 
-example : P → (P → Q) → Q :=
+lemma modus_ponens : P → (P → Q) → Q :=
 begin
   intro hP,
   intro hPQ,
   apply hPQ, clear hPQ,
   exact hP,
 end
+
+-- `a<b` and `b<c` implies `a<c`
+-- `a>b` and `b>c` implies `a>c`.
+
+lemma trans : (P → Q) → (Q → R) → (P → R) :=
+begin
+  intros hPQ hQR hP,
+  apply hQR,
+  apply hPQ,
+  exact hP
+end
+
+lemma trans' : (P → Q) → (Q → R) → (P → R) :=
+λ hPQ hQR hP, hQR $ hPQ hP
+
 
 example : (P → Q → R) → (P → Q) → (P → R) :=
 begin
@@ -130,6 +137,52 @@ example : (P → Q → R) → (P → Q) → (P → R) :=
 begin
   cc,-- "congruence closure"
 end
+
+-- `not P`, with notation `¬ P`, is 
+-- *DEFINED TO MEAN* `P → false`
+
+example : P → ¬ (¬ P) :=
+begin
+  intro hP,
+  change (¬ P) → false,
+  intro hnP,
+  change P → false at hnP,
+  apply hnP,
+  exact hP,
+end
+
+lemma imp_not_not : P → ¬ (¬ P) :=
+begin
+  change P → (P → false) → false,
+  apply modus_ponens
+end
+
+example : (P → Q) → (¬ Q → ¬ P) :=
+begin
+  -- cc kills it
+  intro hPQ,
+  intro hnQ,
+  intro hP,
+  change Q → false at hnQ,-- only change uses P,Q
+  apply hnQ,
+  apply hPQ,
+  exact hP,
+
+end
+
+#print axioms imp_not_not
+
+lemma not_not : ¬ (¬ P) → P :=
+begin
+  intro hnnP,
+  change (P → false) → false at hnnP,
+  finish,
+end
+
+
+
+#print axioms not_not
+
 
 
 
