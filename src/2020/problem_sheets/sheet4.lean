@@ -1,19 +1,23 @@
 /-  Math40001 : Introduction to university mathematics.
 
-Problem Sheet 4, October 2019.
+Problem Sheet 4, October 2020.
 
 This is a Lean file. It can be read with the Lean theorem prover.
 
-You can work on this file online at 
-https://tinyurl.com/Lean-M40001-Example-Sheet-4
+You can work on this file online via the link at
+https://github.com/ImperialCollegeLondon/M40001_lean/blob/master/README.md
+
 
 or you can install Lean and its maths library following the
 instructions at
-https://github.com/leanprover-community/mathlib#installation
+https://leanprover-community.github.io/get_started.html
+
+and then just clone the project onto your own computer
+with `leanproject get ImperialCollegeLondon/M40001_lean`.
 
 There are advantages to installing Lean on your own computer
 (for example it's faster), but it's more hassle than
-just using it online. 
+just using it online.
 
 In the below, delete "sorry" and replace it with some
 tactics which prove the result.
