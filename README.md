@@ -1,6 +1,6 @@
-# M40001/M40009 example sheets and course notes in Lean.
+# M40001/M40009 example sheets and other things in Lean.
 
-M40001/M40009 is the "introduction to proof" course in the maths department at Imperial College London. In the 2020 directory I am currently putting the 2020 example sheets.
+M40001/M40009 is the "introduction to proof" course in the maths department at Imperial College London. In the 2020 directory I am currently putting the 2020 example sheets and some other little Lean files demonstrating things from the course.
 
 ## How to try the example sheets in Lean
 
@@ -34,4 +34,4 @@ Once you have that, then fire up the command line, change to the directory where
 $ leanproject get ImperialCollegeLondon/M40001_lean
 ```
 
-Then open the project in VS Code e.g. by selecting `File` -> `Open Folder` and then selecting the `M40001_lean` directory. Then look in the `src/2020/questions` directory for this year's problem sheets.
+Then open the project in VS Code e.g. by selecting `File` -> `Open Folder` and then selecting the `M40001_lean` directory. Then look in the `src/2020/problem_sheets` directory for this year's problem sheets, and you can look at other Lean files in the 2020 directory too, such as the ones I've been using in the 2020 videos.
