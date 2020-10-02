@@ -16,25 +16,22 @@ Here are the problem sheets for October 2020:
 
 Here are the 2019 sheets:
 
-[Sheet 1](https://tinyurl.com/Lean-M40001-Example-Sheet-1).
+[Sheet 1](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2019%2Fquestions%2Fsheet1.lean).
 
-[Sheet 2](https://tinyurl.com/Lean-M40001-Example-Sheet-2).
+[Sheet 2](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2019%2Fquestions%2Fsheet2.lean).
 
-[Sheet 3](https://tinyurl.com/Lean-M40001-Example-Sheet-3).
+[Sheet 3](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2019%2Fquestions%2Fsheet3.lean).
 
-[Sheet 4](https://tinyurl.com/Lean-M40001-Example-Sheet-4).
-
-
+[Sheet 4](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2019%2Fquestions%2Fsheet4.lean).
 
 ### (2) Download the project and try the example sheets on your own computer
 
-This only works if you have Lean and mathlib installed. Instructions for installing Lean and mathlib are
-[here at the Leanprover community website](https://leanprover-community.github.io/get_started.html#regular-install).
+This only works if you have the [Leanprover community tools installed](https://leanprover-community.github.io/get_started.html); these tools will give you a fully working Lean and mathlib on your computer.
 
-If lean and mathlib are installed, then change to the directory where you keep your Lean projects, and install this project by typing this line into the command line (perhaps in a directory where you want to keep your Lean projects).
+Once you have that, then fire up the command line, change to the directory where you keep your Lean projects, and type this:
 
 ```
-$ leanproject get https://github.com/ImperialCollegeLondon/M40001_lean
+$ leanproject get ImperialCollegeLondon/M40001_lean
 ```
 
-Then open the project in VS Code e.g. by selecting `File` -> `Open Folder` and then selecting the `M40001_lean` directory. Then look in the `src/questions` directory for the problem sheets.
+Then open the project in VS Code e.g. by selecting `File` -> `Open Folder` and then selecting the `M40001_lean` directory. Then look in the `src/2020/questions` directory for this year's problem sheets.
