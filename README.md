@@ -10,7 +10,7 @@ You have two options: (1) use Lean online or (2) install it onto your computer.
 
 Here are the problem sheets for October 2020:
 
-[Sheet 1](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2020%2Fproblem_sheets%2Fsheet1.lean).
+<a href="https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2020%2Fproblem_sheets%2Fsheet1.lean" target="_blank">Sheet 1</a>.
 
 (more sheets to come).
 
