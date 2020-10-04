@@ -33,7 +33,7 @@ This only works if you have the [Leanprover community tools installed](https://l
 Once you have that, then fire up the command line, change to the directory where you keep your Lean projects, and type this:
 
 ```
-$ leanproject get ImperialCollegeLondon/M40001_lean
+leanproject get ImperialCollegeLondon/M40001_lean
 ```
 
 Then open the project in VS Code e.g. by selecting `File` -> `Open Folder` and then selecting the `M40001_lean` directory. Then look in the `src/2020/problem_sheets` directory for this year's problem sheets, and you can look at other Lean files in the 2020 directory too, such as the ones I've been using in the 2020 videos.
