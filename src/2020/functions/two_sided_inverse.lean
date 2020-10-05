@@ -6,9 +6,11 @@ is a bijection if and only if it has a two-sided inverse.
 
 -/
 
+-- let X and Y be types, and let f be a function.
+variables {X  Y : Type} (f : X → Y)
+
 -- two-sided inverse
 
-variables {X  Y : Type} (f : X → Y)
 
 structure tsi (f : X → Y) :=
 (g : Y → X)
