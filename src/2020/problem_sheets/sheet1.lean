@@ -22,7 +22,7 @@ tactics which prove the result.
 /- Question 1. 
 
 Let P and Q be Propositions (that is, true/false statements).
-Prove that P ∧ Q → Q ∧ P. 
+Prove that P ∨ Q → Q ∨ P. 
 
 -/
 
