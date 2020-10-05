@@ -1,4 +1,5 @@
 import data.equiv.basic
+import tactic
 
 structure partition (X : Type) :=
 (C : set (set X))
