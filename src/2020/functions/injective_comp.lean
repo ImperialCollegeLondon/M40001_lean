@@ -14,7 +14,7 @@ begin
   -- We need to prove that `a = b`.
   -- By injectivity of `f`, it suffices to prove that `f(a) = f(b)`.
   apply hf,
-  -- But this follows immediately from our assumption `g(f(a))=g(f(b))`,
-  -- and injectivity.
+  -- But this follows immediately from our assumption
+  -- `g(f(a))=g(f(b))`,and injectivity.
   exact hg hab,
 end
