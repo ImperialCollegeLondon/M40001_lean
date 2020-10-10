@@ -14,8 +14,16 @@ example : ∃ P Q R S U : Prop,
 (¬U ∨ R ∨ ¬P) ∧ (¬U ∨ P ∨ ¬Q) ∧ (¬R ∨ ¬P ∨ S) ∧ (R ∨ S ∨ ¬U) ∧
 (P ∨ ¬U ∨ Q) ∧ (¬S ∨ R ∨ P) ∧ (¬P ∨ ¬Q ∨ ¬R) ∧ (¬P ∨ R ∨ ¬S) :=
 begin
+  -- unprovable according to bool calc
   sorry
 end
+-- hP : P -> proof of P ↔ true
+-- hP : ¬P -> proof of ¬P ↔ true
+
+theorem trick {Q : Prop} (hQ : Q) : Q ↔ true :=
+iff_of_true hQ trivial
+theorem trick2 {Q : Prop} (hQ : ¬ Q) : Q ↔ false :=
+iff_false_intro hQ
 
 example : ∀ P Q R S U : Prop,
   ¬ (
@@ -33,9 +41,11 @@ example : ∀ P Q R S U : Prop,
   ) :=
 begin
   intros,
-  -- finish, -- fails
-  -- UauUo!, -- fails
-  sorry
+  by_cases hP : P;rw trick hP; try {rw iff_false_intro hP}; clear hP; simp;
+  by_cases hP : Q;rw trick hP; try {rw iff_false_intro hP}; clear hP; simp;
+  by_cases hP : R;rw trick hP; try {rw iff_false_intro hP}; clear hP; simp;
+  by_cases hP : S;rw trick hP; try {rw iff_false_intro hP}; clear hP; simp;
+  by_cases hP : U;rw trick hP; try {rw iff_false_intro hP}; clear hP; simp,
 end
 
 example : ∃ P Q R S U : bool, 
