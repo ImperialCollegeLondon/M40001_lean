@@ -12,6 +12,10 @@ Here are the problem sheets for October 2020:
 
 <a href="https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2020%2Fproblem_sheets%2Fsheet1.lean" target="_blank">Sheet 1</a>.
 
+<a href="https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2020%2Fproblem_sheets%2Fsheet2.lean" target="_blank">Sheet 2</a>.
+
+<a href="https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2020%2Fproblem_sheets%2Fsheet3.lean" target="_blank">Sheet 3</a>.
+
 (more sheets to come).
 
 Here are the 2019 sheets:
