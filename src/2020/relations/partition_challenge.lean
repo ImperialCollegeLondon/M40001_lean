@@ -55,10 +55,18 @@ namespace partition
 variables {α : Type} {P : partition α} {X Y : set α}
 
 /-- If X and Y are blocks, and a is in X and Y, then X = Y. -/
-theorem equal_of_mem (hX : X ∈ P.C) (hY : Y ∈ P.C) {a : α} (haX : a ∈ X)
+theorem eq_of_mem (hX : X ∈ P.C) (hY : Y ∈ P.C) {a : α} (haX : a ∈ X)
   (haY : a ∈ Y) : X = Y :=
 -- Proof: follows immediately from the disjointness hypothesis.
 P.Hdisjoint _ _ hX hY ⟨a, haX, haY⟩
+
+/-- If a is in two blocks X and Y, and if b is in X,
+  then b is in Y (as X=Y) -/
+theorem mem_of_mem (hX : X ∈ P.C) (hY : Y ∈ P.C) {a b : α}
+  (haX : a ∈ X) (haY : a ∈ Y) (hbX : b ∈ X) : b ∈ Y :=
+begin
+  sorry
+end
 
 end partition
 
