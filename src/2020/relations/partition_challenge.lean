@@ -4,7 +4,22 @@ import tactic
 
 /-!
 
-# Definition and basic API for partitions
+# The partition challenge!
+
+Prove that equivalence relations on α are the same as partitions of α.
+
+Three sections:
+
+1) partitions
+2) equivalence classes
+3) the challenge
+-/
+
+/-
+
+# 1) Partitions
+
+We define a partition, and then prove one thing about them.
 
 -/
 
@@ -28,6 +43,12 @@ the following data:
 (Hcover : ∀ a, ∃ X ∈ C, a ∈ X)
 (Hdisjoint : ∀ X Y ∈ C, (X ∩ Y : set α).nonempty → X = Y)
 
+/-
+
+## Basic interface for partitions
+
+-/
+
 namespace partition
 
 -- let α be a type, and fix a partition P on α. Let X and Y be subsets of α.
@@ -41,17 +62,23 @@ P.Hdisjoint _ _ hX hY ⟨a, haX, haY⟩
 
 end partition
 
-section equivalence_classes
+/-
 
-/-!
-
-# Definition and basic API for equivalence classes 
+# 2) Equivalence classes.
 
 We define equivalence classes and prove a few basic results about them.
 
 -/
 
--- Notation and variables for this section:
+section equivalence_classes
+
+/-!
+
+## Definition of equivalence classes 
+
+-/
+
+-- Notation and variables for the equivalence class section:
 
 -- let α be a type, and let R be an equivalence relation on R.
 variables {α : Type} {R : α → α → Prop} (hR : equivalence R)
@@ -63,19 +90,25 @@ include hR
 def cl (x : α) :=
 {y : α | R y x}
 
+/-!
+
+## Basic lemmas about equivalence classes
+
+-/
+
 /-- Useful for rewriting -- `y` is in the equivalence class of `x` iff
 `y` is related to `x`. True by definition. -/
 theorem mem_cl_iff {x y : α} : x ∈ cl hR y ↔ R x y := iff.rfl 
 
 /-- x is in cl(x) -/
-lemma mem_class_self (x : α) :
+lemma mem_cl_self (x : α) :
   x ∈ cl hR x :=
 begin
   rcases hR with ⟨hrefl, hsymm, htrans⟩,
-  sorry
+  sorry,
 end
 
-lemma class_sub {x y : α} :
+lemma cl_sub_cl_of_mem_cl {x y : α} :
   x ∈ cl hR y →
   cl hR x ⊆ cl hR y :=
 begin
@@ -83,7 +116,7 @@ begin
   sorry,
 end
 
-lemma class_eq {x y : α} :
+lemma cl_eq_cl_of_mem_cl {x y : α} :
   x ∈ cl hR y →
   cl hR x = cl hR y :=
 begin
@@ -94,14 +127,20 @@ end equivalence_classes -- section
 
 /-!
 
-# Statement of the theorem
+# 3) The challenge!
 
+Let `α` be a type (i.e. a collection of stucff).
+
+There is a bijection between equivalence relations on `α` and
+partitions of `α`.
+
+We prove this by writing down constructions in each direction
+and proving that the constructions are two-sided inverses of one another.
 -/
 
 open partition
 
--- There is a bijection between equivalence relations on α 
--- and partitions of α
+
 example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α :=
 -- We define functions in both directions and prove that one is a two-sided
 -- inverse of the other
@@ -116,18 +155,18 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
     -- so we need to supply three proofs.
     Hnonempty := begin
       -- If X is an equivalence class then X is nonempty.
-      show ∀ (X : set α), (∃ (x : α), X = cl _ x) → X.nonempty,
+      show ∀ (X : set α), (∃ (a : α), X = cl _ a) → X.nonempty,
       sorry,
     end,
     Hcover := begin
       -- The equivalence classes cover α
-      show ∀ (a : α), ∃ (X : set α) (H : ∃ (x : α), X = cl _ x), a ∈ X,
+      show ∀ (a : α), ∃ (X : set α) (H : ∃ (b : α), X = cl _ b), a ∈ X,
       sorry
     end,
     Hdisjoint := begin
       -- If two equivalence classes overlap, they are equal.
-      show ∀ (X Y : set α), (∃ (x : α), X = cl _ x) →
-        (∃ (x : α), Y = cl _ x) → (X ∩ Y).nonempty → X = Y,
+      show ∀ (X Y : set α), (∃ (a : α), X = cl _ a) →
+        (∃ (b : α), Y = cl _ b) → (X ∩ Y).nonempty → X = Y,
       sorry
     end },
   -- Conversely, say P is an partition. 
@@ -184,3 +223,10 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
     show (∃ (a : α), X = cl _ a) ↔ X ∈ P.C,
     sorry,
   end }
+
+/-
+-- get these files with
+
+leanproject get ImperialCollegeLondon/M40001_lean
+
+-/
