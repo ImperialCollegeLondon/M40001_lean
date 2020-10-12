@@ -154,19 +154,22 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
     -- hypotheses for a partition (`Hnonempty`, `Hcover` and `Hdisjoint`),
     -- so we need to supply three proofs.
     Hnonempty := begin
+      cases R with R hR,
       -- If X is an equivalence class then X is nonempty.
-      show ∀ (X : set α), (∃ (a : α), X = cl _ a) → X.nonempty,
+      show ∀ (X : set α), (∃ (a : α), X = cl hR a) → X.nonempty,
       sorry,
     end,
     Hcover := begin
+      cases R with R hR,
       -- The equivalence classes cover α
-      show ∀ (a : α), ∃ (X : set α) (H : ∃ (b : α), X = cl _ b), a ∈ X,
+      show ∀ (a : α), ∃ (X : set α) (H : ∃ (b : α), X = cl hR b), a ∈ X,
       sorry
     end,
     Hdisjoint := begin
+      cases R with R hR,
       -- If two equivalence classes overlap, they are equal.
-      show ∀ (X Y : set α), (∃ (a : α), X = cl _ a) →
-        (∃ (b : α), Y = cl _ b) → (X ∩ Y).nonempty → X = Y,
+      show ∀ (X Y : set α), (∃ (a : α), X = cl hR a) →
+        (∃ (b : α), Y = cl hR b) → (X ∩ Y).nonempty → X = Y,
       sorry
     end },
   -- Conversely, say P is an partition. 
