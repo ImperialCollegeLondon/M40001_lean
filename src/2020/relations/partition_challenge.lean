@@ -181,23 +181,23 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
       -- I claim this is an equivalence relation.
     split,
     { -- It's reflexive
-      show ∀ (x : α)
-        (X : set α), X ∈ P.C → x ∈ X → x ∈ X,
+      show ∀ (a : α)
+        (X : set α), X ∈ P.C → a ∈ X → a ∈ X,
       sorry
     },
     split,
     { -- it's symmetric
-      show ∀ (x y : α),
-        (∀ (X : set α), X ∈ P.C → x ∈ X → y ∈ X) →
-         ∀ (X : set α), X ∈ P.C → y ∈ X → x ∈ X,
+      show ∀ (a b : α),
+        (∀ (X : set α), X ∈ P.C → a ∈ X → b ∈ X) →
+         ∀ (X : set α), X ∈ P.C → b ∈ X → a ∈ X,
       sorry
     },
     { -- it's transitive
       unfold transitive,
-      show ∀ (x y z : α),
-        (∀ (X : set α), X ∈ P.C → x ∈ X → y ∈ X) →
-        (∀ (X : set α), X ∈ P.C → y ∈ X → z ∈ X) →
-         ∀ (X : set α), X ∈ P.C → x ∈ X → z ∈ X,
+      show ∀ (a b c : α),
+        (∀ (X : set α), X ∈ P.C → a ∈ X → b ∈ X) →
+        (∀ (X : set α), X ∈ P.C → b ∈ X → c ∈ X) →
+         ∀ (X : set α), X ∈ P.C → a ∈ X → c ∈ X,
       sorry,
     }
   end⟩,
