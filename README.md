@@ -16,17 +16,7 @@ Here are the problem sheets for October 2020:
 
 <a href="https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2020%2Fproblem_sheets%2Fsheet3.lean" target="_blank">Sheet 3</a>.
 
-(more sheets to come).
-
-Here are the 2019 sheets:
-
-[Sheet 1](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2019%2Fquestions%2Fsheet1.lean).
-
-[Sheet 2](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2019%2Fquestions%2Fsheet2.lean).
-
-[Sheet 3](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2019%2Fquestions%2Fsheet3.lean).
-
-[Sheet 4](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2019%2Fquestions%2Fsheet4.lean).
+<a href="https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2020%2Fproblem_sheets%2Fsheet4.lean" target="_blank">Sheet 4</a>.
 
 ### (2) Download the project and try the example sheets on your own computer
 
