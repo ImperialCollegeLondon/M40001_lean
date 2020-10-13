@@ -70,7 +70,7 @@ end
 
 /-
 % Q2
-\item For each of the following functions, decide whether or not thprop_decidableey are injective, surjective, bijective. 
+\item For each of the following functions, decide whether or not they are injective, surjective, bijective. 
 Proofs required!
 
   \begin{enumerate}
