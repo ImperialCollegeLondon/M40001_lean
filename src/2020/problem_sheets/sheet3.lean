@@ -86,7 +86,7 @@ hematics; nobody currently knows if it is true or false.]
 -/
 
 -- this line just says "we're mathematicians so every proposition is either true or false"
-local attribute [instance, priority 10] classical.prop_decidable
+open_locale classical
 
 -- this line says "a function might not be defined by an algorithm"
 noncomputable theory 
