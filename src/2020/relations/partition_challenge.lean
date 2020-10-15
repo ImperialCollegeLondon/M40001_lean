@@ -1,6 +1,5 @@
 import tactic
 
-
 /-!
 
 # The partition challenge!
@@ -12,13 +11,33 @@ Three sections:
 1) partitions
 2) equivalence classes
 3) the challenge
+
+## Overview
+
+Say `α` is a type, and `R` is a binary relation on `α`. 
+The following things are already in Lean:
+
+reflexive R := ∀ (x : α), R x x
+symmetric R := ∀ ⦃x y : α⦄, R x y → R y x
+transitive R := ∀ ⦃x y z : α⦄, R x y → R y z → R x z
+
+equivalence R := reflexive R ∧ symmetric R ∧ transitive R
+
+In the file below, we will define partitions of `α` and "build some
+interface" (i.e. prove some propositions). We will define
+equivalence classes and do the same thing.
+Finally, we will prove that there's a bijection between
+equivalence relations on `α` and partitions of `α`.
+
+We now begin with section 1.
 -/
 
 /-
 
 # 1) Partitions
 
-We define a partition, and then prove one thing about them.
+We define a partition, and then prove a couple of useful things
+about them.
 
 -/
 
