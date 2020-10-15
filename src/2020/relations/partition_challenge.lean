@@ -12,8 +12,6 @@ Three sections:
 2) equivalence classes
 3) the challenge
 
-## Overview
-
 Say `α` is a type, and `R` is a binary relation on `α`. 
 The following things are already in Lean:
 
@@ -29,15 +27,13 @@ equivalence classes and do the same thing.
 Finally, we will prove that there's a bijection between
 equivalence relations on `α` and partitions of `α`.
 
-We now begin with section 1.
 -/
 
 /-
 
 # 1) Partitions
 
-We define a partition, and then prove a couple of useful things
-about them.
+We define a partition, and prove some easy lemmas.
 
 -/
 
@@ -60,6 +56,20 @@ the following data:
 (Hnonempty : ∀ X ∈ C, (X : set α).nonempty)
 (Hcover : ∀ a, ∃ X ∈ C, a ∈ X)
 (Hdisjoint : ∀ X Y ∈ C, (X ∩ Y : set α).nonempty → X = Y)
+
+-- docstrings
+
+/-- The set of blocks. -/
+add_decl_doc partition.C
+
+/-- Every element of a block is nonempty. -/
+add_decl_doc partition.Hnonempty
+
+/-- The blocks cover the type they partition -/
+add_decl_doc partition.Hcover
+
+/-- Two blocks which share an element are equal -/
+add_decl_doc partition.Hdisjoint
 
 /-
 
@@ -86,6 +96,14 @@ begin
   sorry
 end
 
+/-- Every term of type `α` is in one of the blocks for a partition `P`. -/
+theorem mem_block (a : α) : ∃ X : set α, X ∈ P.C ∧ a ∈ X :=
+begin
+  sorry
+end
+
+
+
 end partition
 
 /-
@@ -107,10 +125,7 @@ section equivalence_classes
 -- Notation and variables for the equivalence class section:
 
 -- let α be a type, and let R be an equivalence relation on R.
-variables {α : Type} {R : α → α → Prop} (hR : equivalence R)
-
--- Always assume R is an equivalence relation, even when we don't need it.
-include hR
+variables {α : Type} (R : α → α → Prop)
 
 /-- The equivalence class of `x` is the set of `y` related to `x`. -/
 def cl (x : α) :=
@@ -124,29 +139,31 @@ def cl (x : α) :=
 
 /-- Useful for rewriting -- `y` is in the equivalence class of `x` iff
 `y` is related to `x`. True by definition. -/
-theorem mem_cl_iff {x y : α} : x ∈ cl hR y ↔ R x y := iff.rfl 
+theorem mem_cl_iff {x y : α} : x ∈ cl R y ↔ R x y := iff.rfl 
+
+variables {R} (hR : equivalence R)
+
+include hR
 
 /-- x is in cl(x) -/
 lemma mem_cl_self (x : α) :
-  x ∈ cl hR x :=
+  x ∈ cl R x :=
 begin
-  rcases hR with ⟨hrefl, hsymm, htrans⟩,
-  sorry,
+  sorry
 end
 
 lemma cl_sub_cl_of_mem_cl {x y : α} :
-  x ∈ cl hR y →
-  cl hR x ⊆ cl hR y :=
+  x ∈ cl R y →
+  cl R x ⊆ cl R y :=
 begin
-  rcases hR with ⟨hrefl, hsymm, htrans⟩,
-  sorry,
+  sorry
 end
 
 lemma cl_eq_cl_of_mem_cl {x y : α} :
-  x ∈ cl hR y →
-  cl hR x = cl hR y :=
+  x ∈ cl R y →
+  cl R x = cl R y :=
 begin
-  sorry,
+  sorry
 end
 
 end equivalence_classes -- section
@@ -175,28 +192,28 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
   -- Let R be an equivalence relation.
   to_fun := λ R, {
     -- Let C be the set of equivalence classes for R.
-    C := { B : set α | ∃ x : α, B = cl R.2 x},
+    C := { B : set α | ∃ x : α, B = cl R.1 x},
     -- I claim that C is a partition. We need to check the three
     -- hypotheses for a partition (`Hnonempty`, `Hcover` and `Hdisjoint`),
     -- so we need to supply three proofs.
     Hnonempty := begin
       cases R with R hR,
       -- If X is an equivalence class then X is nonempty.
-      show ∀ (X : set α), (∃ (a : α), X = cl hR a) → X.nonempty,
-      sorry,
+      show ∀ (X : set α), (∃ (a : α), X = cl R a) → X.nonempty,
+      sorry
     end,
     Hcover := begin
       cases R with R hR,
       -- The equivalence classes cover α
-      show ∀ (a : α), ∃ (X : set α) (H : ∃ (b : α), X = cl hR b), a ∈ X,
-      sorry
+      show ∀ (a : α), ∃ (X : set α) (H : ∃ (b : α), X = cl R b), a ∈ X,
+      sorry,
     end,
     Hdisjoint := begin
       cases R with R hR,
       -- If two equivalence classes overlap, they are equal.
-      show ∀ (X Y : set α), (∃ (a : α), X = cl hR a) →
-        (∃ (b : α), Y = cl hR b) → (X ∩ Y).nonempty → X = Y,
-      sorry
+      show ∀ (X Y : set α), (∃ (a : α), X = cl R a) →
+        (∃ (b : α), Y = cl _ b) → (X ∩ Y).nonempty → X = Y,
+      sorry,
     end },
   -- Conversely, say P is an partition. 
   inv_fun := λ P, 
@@ -216,7 +233,7 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
       show ∀ (a b : α),
         (∀ (X : set α), X ∈ P.C → a ∈ X → b ∈ X) →
          ∀ (X : set α), X ∈ P.C → b ∈ X → a ∈ X,
-      sorry
+      sorry,
     },
     { -- it's transitive
       unfold transitive,
@@ -230,15 +247,15 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
   -- If you start with the equivalence relation, and then make the partition
   -- and a new equivalence relation, you get back to where you started.
   left_inv := begin
-    rintro ⟨R, hrefl, hsymm, htrans⟩,
+    rintro ⟨R, hR⟩,
     -- Tidying up the mess...
-    suffices : (λ (a b : α), ∀ (c : α), a ∈ cl _ c → b ∈ cl _ c) = R,
+    suffices : (λ (a b : α), ∀ (c : α), a ∈ cl R c → b ∈ cl R c) = R,
       simpa,
     -- ... you have to prove two binary relations are equal.
     ext a b,
     -- so you have to prove an if and only if.
-    show (∀ (c : α), a ∈ cl _ c → b ∈ cl _ c) ↔ R a b,
-    sorry
+    show (∀ (c : α), a ∈ cl R c → b ∈ cl R c) ↔ R a b,
+    sorry,
   end,
   -- Similarly, if you start with the partition, and then make the
   -- equivalence relation, and then construct the corresponding partition 
