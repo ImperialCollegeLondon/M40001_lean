@@ -129,9 +129,9 @@ section equivalence_classes
 -- let α be a type, and let R be a binary relation on R.
 variables {α : Type} (R : α → α → Prop)
 
-/-- The equivalence class of `x` is the set of `y` related to `x`. -/
-def cl (x : α) :=
-{y : α | R y x}
+/-- The equivalence class of `a` is the set of `b` related to `a`. -/
+def cl (a : α) :=
+{b : α | R b a}
 
 /-!
 
@@ -139,31 +139,31 @@ def cl (x : α) :=
 
 -/
 
-/-- Useful for rewriting -- `y` is in the equivalence class of `x` iff
-`y` is related to `x`. True by definition. -/
-theorem mem_cl_iff {x y : α} : x ∈ cl R y ↔ R x y := iff.rfl 
+/-- Useful for rewriting -- `b` is in the equivalence class of `a` iff
+`b` is related to `a`. True by definition. -/
+theorem mem_cl_iff {a b : α} : b ∈ cl R a ↔ R b a := iff.rfl 
 
 -- Assume now that R is an equivalence relation.
 variables {R} (hR : equivalence R)
 include hR
 
 /-- x is in cl(x) -/
-lemma mem_cl_self (x : α) :
-  x ∈ cl R x :=
+lemma mem_cl_self (a : α) :
+  a ∈ cl R a :=
 begin
   sorry,
 end
 
-lemma cl_sub_cl_of_mem_cl {x y : α} :
-  x ∈ cl R y →
-  cl R x ⊆ cl R y :=
+lemma cl_sub_cl_of_mem_cl {a b : α} :
+  a ∈ cl R b →
+  cl R a ⊆ cl R b :=
 begin
   sorry,
 end
 
-lemma cl_eq_cl_of_mem_cl {x y : α} :
-  x ∈ cl R y →
-  cl R x = cl R y :=
+lemma cl_eq_cl_of_mem_cl {a b : α} :
+  a ∈ cl R b →
+  cl R a = cl R b :=
 begin
   sorry
 end
