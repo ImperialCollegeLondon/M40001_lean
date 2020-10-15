@@ -1,4 +1,3 @@
-import data.equiv.basic
 import tactic
 
 
