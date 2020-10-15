@@ -12,6 +12,8 @@ Three sections:
 2) equivalence classes
 3) the challenge
 
+## Overview
+
 Say `α` is a type, and `R` is a binary relation on `α`. 
 The following things are already in Lean:
 
@@ -93,13 +95,13 @@ P.Hdisjoint _ _ hX hY ⟨a, haX, haY⟩
 theorem mem_of_mem (hX : X ∈ P.C) (hY : Y ∈ P.C) {a b : α}
   (haX : a ∈ X) (haY : a ∈ Y) (hbX : b ∈ X) : b ∈ Y :=
 begin
-  sorry
+  sorry,
 end
 
 /-- Every term of type `α` is in one of the blocks for a partition `P`. -/
 theorem mem_block (a : α) : ∃ X : set α, X ∈ P.C ∧ a ∈ X :=
 begin
-  sorry
+  sorry,
 end
 
 
@@ -149,14 +151,14 @@ include hR
 lemma mem_cl_self (x : α) :
   x ∈ cl R x :=
 begin
-  sorry
+  sorry,
 end
 
 lemma cl_sub_cl_of_mem_cl {x y : α} :
   x ∈ cl R y →
   cl R x ⊆ cl R y :=
 begin
-  sorry
+  sorry,
 end
 
 lemma cl_eq_cl_of_mem_cl {x y : α} :
@@ -200,7 +202,7 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
       cases R with R hR,
       -- If X is an equivalence class then X is nonempty.
       show ∀ (X : set α), (∃ (a : α), X = cl R a) → X.nonempty,
-      sorry
+      sorry,
     end,
     Hcover := begin
       cases R with R hR,
@@ -226,7 +228,7 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
     { -- It's reflexive
       show ∀ (a : α)
         (X : set α), X ∈ P.C → a ∈ X → a ∈ X,
-      sorry
+      sorry,
     },
     split,
     { -- it's symmetric
