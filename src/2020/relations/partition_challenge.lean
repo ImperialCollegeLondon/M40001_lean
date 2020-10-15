@@ -126,7 +126,7 @@ section equivalence_classes
 
 -- Notation and variables for the equivalence class section:
 
--- let α be a type, and let R be an equivalence relation on R.
+-- let α be a type, and let R be a binary relation on R.
 variables {α : Type} (R : α → α → Prop)
 
 /-- The equivalence class of `x` is the set of `y` related to `x`. -/
@@ -143,8 +143,8 @@ def cl (x : α) :=
 `y` is related to `x`. True by definition. -/
 theorem mem_cl_iff {x y : α} : x ∈ cl R y ↔ R x y := iff.rfl 
 
+-- Assume now that R is an equivalence relation.
 variables {R} (hR : equivalence R)
-
 include hR
 
 /-- x is in cl(x) -/
@@ -187,9 +187,9 @@ open partition
 
 
 example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α :=
--- We define functions in both directions and prove that one is a two-sided
--- inverse of the other
-{ -- Here is the first function (construction), from equivalence
+-- We define constructions (functions!) in both directions and prove that
+-- one is a two-sided inverse of the other
+{ -- Here is the first construction, from equivalence
   -- relations to partitions.
   -- Let R be an equivalence relation.
   to_fun := λ R, {
@@ -219,8 +219,9 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
     end },
   -- Conversely, say P is an partition. 
   inv_fun := λ P, 
-    -- Let's define a binary relation by x ~ y iff every block containing a,
-    -- also contains b. Because only one block contains a, this will work,
+    -- Let's define a binary relation `R` thus:
+    --  `R a b` iff *every* block containing `a` also contains `b`.
+    -- Because only one block contains a, this will work,
     -- and it turns out to be a nice way of thinking about it. 
     ⟨λ a b, ∀ X ∈ P.C, a ∈ X → b ∈ X, begin
       -- I claim this is an equivalence relation.
@@ -269,6 +270,7 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
     -- if and only if it's in the one made from the equivalence relation.
     ext X,
     show (∃ (a : α), X = cl _ a) ↔ X ∈ P.C,
+    dsimp only,
     sorry,
   end }
 
