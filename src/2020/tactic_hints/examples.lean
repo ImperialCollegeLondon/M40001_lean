@@ -193,4 +193,37 @@ begin
   sorry,
 end
 
-/-! -/
+/-! ## 4b) ext -/
+
+-- `ext` is Lean's extensionality tactic. If your goal is to prove that 
+-- two extensional things are equal (e.g. sets, functions, binary relations)
+-- then `ext a` or `ext a b` or whatever is appropriate, will turn the
+-- question into the assertion that they behave in the same way. Let's look
+-- at some examples
+
+example (A B : set ℕ) : A = B :=
+begin
+  -- ⊢ A = B
+  ext x,
+  --  x : ℕ
+  -- ⊢ x ∈ A ↔ x ∈ B
+  sorry
+end
+
+example (X Y : Type) (f g : X → Y) : f = g :=
+begin
+  -- ⊢ f = g
+  ext x,
+  --  x : X
+  -- ⊢ f x = g x
+  sorry
+end
+
+example (α : Type) (R S : α → α → Prop) : R = S :=
+begin
+  -- ⊢ R = S
+  ext a b,
+  -- a b : α
+  -- ⊢ R a b ↔ S a b
+  sorry
+end
