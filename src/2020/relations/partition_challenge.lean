@@ -141,7 +141,7 @@ def cl (a : α) :=
 
 /-- Useful for rewriting -- `b` is in the equivalence class of `a` iff
 `b` is related to `a`. True by definition. -/
-theorem mem_cl_iff {a b : α} : b ∈ cl R a ↔ R b a := iff.rfl 
+theorem cl_def {a b : α} : b ∈ cl R a ↔ R b a := iff.rfl 
 
 -- Assume now that R is an equivalence relation.
 variables {R} (hR : equivalence R)
