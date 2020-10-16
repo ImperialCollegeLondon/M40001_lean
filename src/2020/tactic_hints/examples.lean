@@ -5,15 +5,20 @@ import tactic
 # Tactic cheat sheet. 
 
 
+-- natnumgame tactics
 
-apply, rw, use, intro, rw at \|- h, exact, assumption, split
+apply, 
+exact,
+split
 
-convert
-ext
-have
+-- more rarely used
+assumption, 
+use, 
 They need `use` to kill` nonempty X`
 
-rintros, have, specialize,
+-- other cool stuff
+convert
+ext
 
 -/
 
@@ -127,7 +132,7 @@ end
 
 /-!
 
-# 2) Using hypotheses on the goal.
+# 3) Using hypotheses on the goal.
 
 -/
 
@@ -159,11 +164,11 @@ Variants -- `rw h1 at h2`, `rw h1 at h2 ⊢`, `rw h at *`
 
 /-
 
-# Changing the goal
+# 4) Changing the goal without using hypotheses
 
 -/
 
-/-! ### intro and rintro -/
+/-! ### 4a) intro and rintro -/
 
 -- `intro` is a basic tactic for introducing hypotheses
 example (P Q : Prop) : P → Q :=
@@ -185,4 +190,7 @@ begin
   --  n: ℕ
   -- hn: f n > 37
   -- ⊢ P
+  sorry,
 end
+
+/-! -/
