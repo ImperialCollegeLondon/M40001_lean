@@ -8,17 +8,11 @@ import tactic
 -- natnumgame tactics
 
 apply, 
-exact,
+exact (and assumption)
 split
+use (use `use` to make progress with `nonempty X`)
 
--- more rarely used
-assumption, 
-use, 
-They need `use` to kill` nonempty X`
 
--- other cool stuff
-convert
-ext
 
 -/
 
@@ -132,7 +126,7 @@ end
 
 /-!
 
-# 3) Using hypotheses on the goal.
+# 3) Using hypotheses to change the goal.
 
 -/
 
@@ -156,11 +150,27 @@ begin
   assumption
 end
 
-/-
+-- Variants -- `rw h1 at h2`, `rw h1 at h2 ⊢`, `rw h at *`
 
-Variants -- `rw h1 at h2`, `rw h1 at h2 ⊢`, `rw h at *`
+/-!
+
+## 2b) convert
+
+`convert` is in some sense the opposite way of thinking to `rw`. Instead
+of continually rewriting the goal until it becomes one of your assumptions,
+why not just tell Lean that the assumption is basically the right answer
+modulo a few loose ends, which Lean will then leave for you as new goals.
+
 -/
 
+example (X Y : set ℕ) (hX : 37 ∈ X) : 37 ∈ Y :=
+begin
+  -- hX: 37 ∈ X
+  -- ⊢ 37 ∈ Y
+  convert hX,
+  -- ⊢ Y = X
+  sorry
+end
 
 /-
 
