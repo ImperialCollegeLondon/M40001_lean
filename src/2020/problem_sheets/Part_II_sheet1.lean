@@ -2,12 +2,14 @@ import tactic
 
 variables (x y : ℕ)
 
+open nat
+
 theorem Q1a : x + y = y + x :=
 begin
   sorry
 end
 
-theorem Q1b : x + y = x → x = 0 :=
+theorem Q1b : x + y = x → y = 0 :=
 begin
   sorry
 end
