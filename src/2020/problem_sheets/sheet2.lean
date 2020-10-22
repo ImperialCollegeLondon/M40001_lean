@@ -101,7 +101,7 @@ begin
 end
 
 example (f : ℝ → ℝ) (x : ℝ) :
-  ¬ (∀ ε : ℝ, ε > 0 → ∃ δ : ℝ, δ > 0 → ∀ y : ℝ, abs (y - x) < δ → abs (f y -f x) < ε )
+  ¬ (∀ ε : ℝ, ε > 0 → ∃ δ : ℝ, δ > 0 ∧ ∀ y : ℝ, abs (y - x) < δ → abs (f y -f x) < ε )
 ↔ -- change next line to what you think the answer is
 true :=
 begin
