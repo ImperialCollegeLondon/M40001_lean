@@ -8,8 +8,6 @@ a.1 + b.2 = b.1 + a.2
 -- introduce ≈ (type with `\~~`) notation for this relation
 instance : has_equiv (ℕ × ℕ) := ⟨nat2.R⟩
 
-
-
 -- let's prove some lemmas about this binary relation
 namespace nat2.R
 
@@ -29,6 +27,8 @@ end
 -- Now let's prove that this binary relation is an equivalence relation
 lemma reflexive : ∀ x : ℕ × ℕ, x ≈ x :=
 begin
+  -- let x be (i,j)
+  rintro ⟨i, j⟩,
   sorry
 end
 
@@ -41,10 +41,13 @@ begin
   sorry
 end
 
+-- sub-boss
+
 lemma transitive : ∀ x y z : ℕ × ℕ, (x ≈ y) → (y ≈ z) → (x ≈ z) :=
 begin
   -- this is a little trickier
-  -- recall `add_right_cancel` says `a + b = c + b → a = c`
+  -- recall `add_left_inj a` says `b + a = c + a ↔ b = c`
+  -- and you might want to consider rewriting it in the ← direction
   sorry
 end
 
@@ -74,13 +77,18 @@ namespace myint
 
 /-! ## zero -/
 
-def zero := ⟦(⟨0, 0⟩ : ℕ × ℕ)⟧
+-- Notation: ⟦(a,b)⟧ ∈ ℤ is the equivalence class of (a,b) ∈ ℕ²
 
+/-- 0 is the equivalence class of (0,0) -/
+def zero := ⟦(0,0)⟧
+
+-- Notation 0 for zero
 instance : has_zero myint := ⟨myint.zero⟩
 
+-- true by definition
 lemma zero_def : (0 : myint) = ⟦(0, 0)⟧ :=
 begin
-  refl
+  sorry
 end
 
 /-! ## negation (additive inverse) -/
@@ -91,9 +99,12 @@ end
 def neg_aux (x : ℕ × ℕ) : myint := ⟦(x.2, x.1)⟧
 
 -- true by definition
-lemma neg_aux_def (i j : ℕ) : neg_aux (i, j) = ⟦(j, i)⟧ := rfl
+lemma neg_aux_def (i j : ℕ) : neg_aux (i, j) = ⟦(j, i)⟧ :=
+begin
+  sorry
+end
 
-/-! # Well-definedness
+/-! ### Well-definedness of negation
 
 OK now here's the concrete problem. We would like to define
 a negation map `ℤ → ℤ` sending `z` to `-z`. We want to do this in
@@ -115,13 +126,26 @@ if you uncomment the below code
 you'll see an error, and if you put your cursor on the error you'll
 see that Lean wants a proof that if two elements `a` and `b` are in the
 same equivalence class, then `neg_aux a = neg_aux b`. So let's prove this now.
+
+You'll need to know `quotient.sound : a ≈ b → ⟦a⟧ = ⟦b⟧`
 -/
+
 
 -- negation on the integers, defined via neg_aux, is well-defined.
 lemma neg_aux_lemma : ∀ x y : ℕ × ℕ, x ≈ y → neg_aux x = neg_aux y :=
 begin
+  rintro ⟨i,j⟩ ⟨k,l⟩ h,
+  rw [neg_aux_def, neg_aux_def],
+  -- ⊢ ⟦(j, i)⟧ = ⟦(l, k)⟧
+  -- next step: if ⟦a⟧=⟦b⟧ then a ≈ b
+  apply quotient.sound,
+  -- ⊢ (j, i) ≈ (l, k)
+  -- take it from here.
   sorry
 end
+
+-- Note that we use `neg_aux_lemma` in the definition below
+-- to justify well-definedness of `neg`
 
 /-- Negation on on the integers. The function sending `z` to `-z`. -/
 def neg : myint → myint :=
@@ -129,6 +153,8 @@ quotient.lift neg_aux neg_aux_lemma
 
 -- notation for negation
 instance : has_neg myint := ⟨neg⟩
+
+-- We can now write `-z` if `z : myint`
 
 -- this is true by definition
 lemma neg_def (i j : ℕ) : (-⟦(i, j)⟧ : myint) = ⟦(j, i)⟧ :=
@@ -142,7 +168,7 @@ Our final construction: we want to define addition on `myint`.
 Here we have the same problem. Say z₁ and z₂ are integers.
 Choose elements a₁=(i,j) and a₂=(k,l) in ℕ². We want to define
 z₁ + z₂ to be ⟦(i+k,j+l)⟧, the equivalence class of a₁ + a₂.
-Let's make this definition now.
+We will need to check this is well-defined.
 
 -/
 
@@ -150,10 +176,10 @@ Let's make this definition now.
 the equivalence class of their sum. -/
 def add_aux (x y : ℕ × ℕ) : myint := ⟦(x.1 + y.1, x.2 + y.2)⟧
 
--- true by definition, but useful for rewriting
+-- true by definition
 lemma add_aux_def (i j k l : ℕ) : add_aux (i, j) (k, l) = ⟦(i + k, j + l)⟧ :=
 begin
-  refl
+  sorry
 end
 
 /-
@@ -178,7 +204,7 @@ begin
   sorry
 end
 
--- Now this is checked, we can define addition.
+-- Now this is checked, we can define addition: it's well-defined.
 
 /-- Addition on the integers -/
 def add : myint → myint → myint :=
@@ -195,7 +221,7 @@ begin
 end
 
 /-
-The four fundamental facts about addition on the integes are:
+The four fundamental facts about addition on the integers are:
 1) associativity
 2) commutativity
 3) zero is an additive identity
@@ -207,6 +233,8 @@ Let's prove these now.
 
 lemma zero_add (x : myint) : 0 + x = x :=
 begin
+  -- need to get from ℤ back to ℕ²
+  apply quotient.induction_on x,
   sorry,
 end
 
@@ -220,8 +248,10 @@ begin
   sorry
 end
 
+-- here we need to change both x and y into elements of ℕ²
 lemma add_comm (x y : myint) : x + y = y + x :=
 begin
+  apply quotient.induction_on₂ x y,
   sorry
 end
 
@@ -230,7 +260,10 @@ begin
   sorry,
 end
 
--- We just proved that the integers are a commutative group under addition!
+-- The lemmas above are the axioms for a commutative group.
+
+-- Hence we just proved that the integers are a
+-- commutative group under addition!
 
 instance : add_comm_group myint :=
 { add := (+),
@@ -253,6 +286,7 @@ inverses -- if a is a non-zero integer then a⁻¹ is typially not an integer)
 
 def mul_aux (x y : ℕ × ℕ) : myint := ⟦(sorry, sorry)⟧
 
+-- true by definition
 lemma mul_aux_def (i j k l : ℕ) : mul_aux (i, j) (k, l) = sorry :=
 begin
   sorry
@@ -269,12 +303,15 @@ begin
   sorry
 end
 
+-- It's much easier from here on
+
 -- definition of multiplication
 def mul : myint → myint → myint :=
 quotient.lift₂ mul_aux mul_aux_lemma
 
 instance : has_mul myint := ⟨mul⟩ 
 
+-- true by definition
 lemma mul_def (i j k l : ℕ) : (⟦(i, j)⟧ * ⟦(k, l)⟧ : myint) = ⟦(sorry, sorry)⟧ :=
 begin
   sorry
