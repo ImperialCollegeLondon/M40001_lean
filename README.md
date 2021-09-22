@@ -1,31 +1,15 @@
-# M40001/M40009 example sheets and other things in Lean.
+# Introduction to University Mathematics (M40001/M40009) : additional Lean material
 
-M40001/M40009 is the "introduction to proof" course in the maths department at Imperial College London. In the 2020 directory I am currently putting the 2020 example sheets and some other little Lean files demonstrating things from the course.
+Lean is not an official part of Imperial's Introduction to University Mathematics course, but a lot of the material in Parts I and II is really nice to do in Lean.
 
-## How to try the example sheets in Lean
+If you are taking the course in October 2021 and you are looking to try doing some of the material in Lean then you should head on over to the 2021 page [here](src/2021/README.md).
 
-You have two options: (1) use Lean online or (2) install it onto your computer.
+For the best user experience it's worth installing Lean on your own computer. This course will be in Lean 3. Instructions on how to install Lean 3 and "mathlibtools", tools which will make doing mathematics in Lean 3 much easier, then head on over to [the installation page](https://leanprover-community.github.io/get_started.html) on the Lean community website. Once you have done this you can just install this Lean project by firing up the command line you used to install Lean and typing
 
-### (1) : use Lean online.
-
-Here are the problem sheets for October 2020:
-
-<a href="https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2020%2Fproblem_sheets%2Fsheet1.lean" target="_blank">Sheet 1</a>.
-
-<a href="https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2020%2Fproblem_sheets%2Fsheet2.lean" target="_blank">Sheet 2</a>.
-
-<a href="https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2020%2Fproblem_sheets%2Fsheet3.lean" target="_blank">Sheet 3</a>.
-
-<a href="https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2020%2Fproblem_sheets%2Fsheet4.lean" target="_blank">Sheet 4</a>.
-
-### (2) Download the project and try the example sheets on your own computer
-
-This only works if you have the [Leanprover community tools installed](https://leanprover-community.github.io/get_started.html); these tools will give you a fully working Lean and mathlib on your computer.
-
-Once you have that, then fire up the command line, change to the directory where you keep your Lean projects, and type this:
 
 ```
 leanproject get ImperialCollegeLondon/M40001_lean
 ```
 
-Then open the project in VS Code e.g. by selecting `File` -> `Open Folder` and then selecting the `M40001_lean` directory. Then look in the `src/2020/problem_sheets` directory for this year's problem sheets, and you can look at other Lean files in the 2020 directory too, such as the ones I've been using in the 2020 videos.
+
+
