@@ -1,6 +1,8 @@
 import tactic
 
--- Let's make bijections between ℕ, ℤ and ℚ.
+-- experiments with bijections
+
+/-
 
 #check infinite
 
@@ -14,6 +16,8 @@ example : infinite ℕ := by apply_instance
 example : infinite ℤ := by show_term {apply_instance}
 
 #check rat.of_int
+
+-/
 
 example : infinite ℚ := infinite.of_injective (coe : ℤ → ℚ)
 begin
@@ -56,13 +60,22 @@ def bool_times_nat : bool × ℕ ≃ ℕ :=
     intro n,
     suffices : ite (n % 2 = 0) (n / 2 * 2) (n / 2 * 2 + 1) = n,
       simpa,
-    split_ifs,  
+    split_ifs, 
+    { have h2 := nat.mod_add_div n 2,
+      rwa [h, zero_add, mul_comm] at h2,
+    },
+    { have h2 := nat.mod_add_div n 2,
+      rw [add_comm, mul_comm] at h2,
+      convert h2,
+      rcases nat.mod_two_eq_zero_or_one n with (h3 | h3),
+      { contradiction },
+      { rw h3 }}
   end
    }
 
 
 
-example (X : Type) (h : X ≃ ℕ) : X ≃ X × bool := sorry
+-- example (X : Type) (h : X ≃ ℕ) : X ≃ X × bool := sorry
 
 end countably_infinite
 
