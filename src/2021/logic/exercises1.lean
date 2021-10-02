@@ -36,7 +36,8 @@ variables (P Q R : Prop)
 /-- Every proposition implies itself. -/
 lemma identity : P → P :=
 begin
-  sorry
+  intro h,
+  exact h,
 end
 
 /-
@@ -52,13 +53,18 @@ The convention in Lean is that it means `P → (Q → R)`.
 example : P → Q → P :=
 begin
   -- remember, this means `P → (Q → P)`
-  sorry
+  intro hP,
+  intro hQ,
+  exact hP,
 end
 
 /-- If we know `P`, and we also know `P → Q`, we can deduce `Q`. -/
 lemma modus_ponens : P → (P → Q) → Q :=
 begin
-  sorry
+  intro carrot,
+  intro hPQ,
+  apply hPQ,
+  exact carrot,
 end
 
 /-- `→` is transitive. That is, if `P → Q` and `Q → R` are true, then
@@ -70,6 +76,16 @@ end
 
 example : (P → Q → R) → (P → Q) → (P → R) :=
 begin
-  sorry
+  intro hPQR,
+  intro hPQ,
+  intro hP,
+  apply hPQR,
+  { sorry },
+  { sorry }
 end
 
+-- Now they get a little harder
+example : (P → P → Q) → ((P → Q) → P) → Q :=
+begin
+  sorry
+end
