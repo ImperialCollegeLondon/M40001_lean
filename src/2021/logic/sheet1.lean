@@ -8,7 +8,7 @@ import tactic -- imports all the Lean tactics
 
 /-!
 
-# Logic in Lean, example sheet 1
+# Logic in Lean, example sheet 1 : "implies"
 
 We learn about propositions, and implications `P → Q` between them. You can get
 this arrow by typing `\to` or `\r`. Mathematicians usually write the
@@ -27,11 +27,7 @@ following tactics:
 
 variables (P Q R : Prop)
 
-/- 
-
-## Level 1 : implies
-
--/
+-- Here are the levels.
 
 /-- Every proposition implies itself. -/
 lemma identity : P → P :=
