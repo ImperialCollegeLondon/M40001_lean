@@ -98,8 +98,8 @@ end
 
 example :
   (((P → Q → Q) → ((P → Q) → Q)) → R) →
-  (((P → P → Q) → ((P → P) → Q)) → R) →
-  ((((P → P) → Q) → (P → P → Q)) → R) → R :=
+  ((((P → P) → Q) → (P → P → Q)) → R) → 
+  (((P → P → Q) → ((P → P) → Q)) → R) → R :=
 begin
   sorry
 end
