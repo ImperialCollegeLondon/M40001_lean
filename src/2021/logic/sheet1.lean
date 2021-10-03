@@ -96,6 +96,11 @@ begin
   sorry
 end
 
+example : (((P → Q) → Q) → Q) → (P → Q) :=
+begin
+  sorry
+end
+
 example :
   (((P → Q → Q) → ((P → Q) → Q)) → R) →
   ((((P → P) → Q) → (P → P → Q)) → R) → 
@@ -104,8 +109,4 @@ begin
   sorry
 end
 
-example : (((P → Q) → Q) → Q) → (P → Q) :=
-begin
-  sorry
-end
 
