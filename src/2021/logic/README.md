@@ -6,9 +6,9 @@ of the Riemann Hypothesis are all propositions.
 
 In the logic part of the Introduction to University Mathematics (IUM) course
 we learn about how to do basic mathematics with propositions. Basic mathematics
-with numbers involves learning about how `+`, `-`, `*` and `/` interact.
-Basic mathematics with propositions involves learning
-about how `→`, `¬`, `∧`, `↔` and `∨` interact.
+with numbers involves learning about how functions like `+`, `-`, `*` and `/`
+interact with numbers like 0, 1, 2, .... Basic mathematics with propositions involves learning about how `→`, `¬`, `∧`, `↔` and `∨` interact with
+propositions like `true` and `false`.
 
 ## Lean's notation for logic.
 
@@ -32,11 +32,33 @@ statement.
 ## Lean's tactic state.
 
 Lean's "tactic state", or "local context", is what you see on the right
-hand side of the 
+hand side of the screen when you have Lean up and running. In the middle
+of a proof it might look something like this:
 
-## Logic in Lean
+```
+P Q : Prop
+hP : P
+hPQ : P → Q
+⊢ Q
+```
+
+The proposition after the "sideways T" at the bottom is the thing you
+are supposed to be *proving* -- this is the *goal* of the level of
+the game. The stuff above that weird T is the stuff you are *assuming*.
+In the example above, `P` and `Q` are propositions, and we are assuming
+that `P` is true and that `P` implies `Q`, and we are supposed to be
+proving that `Q` is true. If you succeed in proving the goal, Lean
+will display a "goals accomplished 🎉" message and, assuming you
+didn't use `sorry` at any point (which is cheating), you've solved the level.
+
+How then do we manipulate the tactic state? We do this using tactics,
+which you type in on the left hand side of the screen.
+
+# Tactics you will need.
 
 To do logic problems in Lean you need to know some basic tactics.
+
+## Tactics for sheet 1.
 
 ## The `intro` tactic.
 
@@ -79,7 +101,8 @@ will close your goal.
 Note: `exact P` does not work. Don't confuse
 the *statement* `P` with its *proof* `hP`.
 
-Note: The `assumption` tactic will also work. 
+Note: The `assumption` tactic will also work. That means "solve the goal,
+because its proof is one of our assumptions". 
 
 ## The `apply` tactic
 
@@ -102,6 +125,61 @@ hPQ : P → Q
 ```
 
 The `apply` tactic is useful for *arguing backwards*. It reduces the goal to a potentially easier goal, without changing any hypotheses.
+
+## Sheet 1 cheat sheet
+
+Here's which tactic to use in order to make progress with a given proposition.
+
+| Form of proposition | In the goal? | Hypothesis named `h`? |
+|--------------|-----------|------------|
+| P → Q | `intro hP` | `apply h` |
+
+## Tactics for sheet 2
+
+## The `trivial` tactic
+
+If your goal is
+
+```
+⊢ true
+```
+
+then you can prove it with `trivial`.
+
+Note that if you have a hypothesis `h : true` then this is useless to you,
+because a true hypothesis is obviously true.
+
+## The `exfalso` tactic
+
+If your goal is
+
+```
+⊢ <anything at all>
+```
+
+then the `exfalso` tactic changes it to 
+
+```
+⊢ false
+```
+
+What is going on here? Note that `false → true` and `false → false` are both
+true, which means that `false → P` for any proposition `P`. `apply`ing this
+fact, we can change any goal we like to `false`, and this is what the
+tactic does.
+
+A useful technique: if you have a *hypothesis* `h : false`:
+
+```
+h : false
+⊢ <anything at all>
+```
+
+then you can solve the level with `exfalso` followed by `exact h`.
+
+*******************************************************
+
+TODO
 
 ## The `rw` tactic
 
