@@ -64,7 +64,7 @@ begin
   sorry
 end
 
-example : (P → P → false) → ((P → false) → P) → false :=
+example : (P → false) → P → Q :=
 begin
   sorry
 end
