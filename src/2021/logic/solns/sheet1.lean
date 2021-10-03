@@ -36,7 +36,8 @@ variables (P Q R : Prop)
 /-- Every proposition implies itself. -/
 lemma identity : P → P :=
 begin
-  sorry
+  intro hp,
+  exact hp,
 end
 
 /-
@@ -51,25 +52,35 @@ The convention in Lean is that it means `P → (Q → R)`.
 -/
 example : P → Q → P :=
 begin
-  sorry
+  intros hP hQ,
+  exact hP,
 end
 
 /-- If we know `P`, and we also know `P → Q`, we can deduce `Q`. -/
 lemma modus_ponens : P → (P → Q) → Q :=
 begin
-  sorry
+  intros hP hPQ,
+  apply hPQ,
+  exact hP,
 end
 
 /-- `→` is transitive. That is, if `P → Q` and `Q → R` are true, then
   so is `P → R`. -/
 lemma transitivity : (P → Q) → (Q → R) → (P → R) :=
 begin
-  sorry,
+  intros hPQ hQR hP,
+  apply hQR,
+  apply hPQ,
+  exact hP,
 end
 
 example : (P → Q → R) → (P → Q) → (P → R) :=
 begin
-  sorry
+  intros hPQR hPQ hP,
+  apply hPQR,
+  { exact hP },
+  { apply hPQ,
+    exact hP },  
 end
 
 -- Now they get a little harder
@@ -78,33 +89,69 @@ variables (S T : Prop)
 
 example : (P → R) → (S → Q) → (R → T) → (Q → R) → S → T :=
 begin
-  sorry
+  intros hPR hSQ hRT hQR hS,
+  apply hRT,
+  apply hQR,
+  apply hSQ,
+  exact hS,
 end
 
 example : (P → P → Q) → ((P → Q) → P) → Q :=
 begin
-  sorry
+  intros hPPQ hPQP,
+  apply hPPQ,
+  { apply hPQP,
+    intro hP,
+    apply hPPQ,
+    { exact hP },
+    { exact hP } },
+  { apply hPQP,
+    intro hP,
+    apply hPPQ,
+    { exact hP },
+    { exact hP } },
 end
 
 example : ((P → Q) → R) → ((Q → R) → P) → ((R → P) → Q) → P :=
 begin
-  sorry
+  intros hPQR hQRP hRPQ,
+  apply hQRP,
+  intro hQ,
+  apply hPQR,
+  intro hP,
+  apply hRPQ,
+  intro hR,
+  exact hP,
 end
 
 example : ((Q → P) → P) → (Q → R) → (R → P) → P :=
 begin
-  sorry
+  intros hQPP hQR hRP,
+  apply hQPP,
+  intro hQ,
+  apply hRP,
+  apply hQR,
+  exact hQ,
 end
 
 example : (((P → Q) → Q) → Q) → (P → Q) :=
 begin
-  sorry
+  intros hPQQQ hP,
+  apply hPQQQ,
+  intros hPQ,
+  apply hPQ,
+  exact hP,
 end
 
 example :
   (((P → Q → Q) → ((P → Q) → Q)) → R) →
-  ((((P → P) → Q) → (P → P → Q)) → R) →
+  ((((P → P) → Q) → (P → P → Q)) → R) → 
   (((P → P → Q) → ((P → P) → Q)) → R) → R :=
 begin
-  sorry
+  intros h1 h2 h3,
+  apply h2,
+  intros hPPQ hP hP2,
+  apply hPPQ,
+  intro hP3,
+  exact hP,
 end
