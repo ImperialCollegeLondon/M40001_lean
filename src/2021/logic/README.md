@@ -35,7 +35,7 @@ The notation `h : P` means any of the following equivalent things:
 * `h` is the assumption that `P` is true
 * `P` is true, and this fact is called `h`
 
-Here `h` is a variable. We will often call proofs of `P` things like `hP`
+Here `h` is just a variable name. We will often call proofs of `P` things like `hP`
 but you can call them pretty much anything.
 
 WARNING: do not confuse `P : Prop` with `hP : P`. The former just means
