@@ -7,8 +7,21 @@ of the Riemann Hypothesis are all propositions.
 In the logic part of the Introduction to University Mathematics (IUM) course
 we learn about how to do basic mathematics with propositions. Basic mathematics
 with numbers involves learning about how functions like `+`, `-`, `*` and `/`
-interact with numbers like 0, 1, 2, .... Basic mathematics with propositions involves learning about how `→`, `¬`, `∧`, `↔` and `∨` interact with
+interact with numbers like 0, 1, 2, .... Basic mathematics with propositions involves learning about how
+functions like `→`, `¬`, `∧`, `↔` and `∨` interact with
 propositions like `true` and `false`.
+
+# Links for the impatient
+
+If you just want to dive in and haven't even got Lean installed on your computer, you
+can try these levels online; here are the links
+
+* [Logic sheet 1](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet1.lean)
+* [Logic sheet 2](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet2.lean)
+* [Logic sheet 3](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet3.lean)
+
+and if you're stuck then either skip down to "Tactics you will need" or watch a short video (to be uploaded) where I give an introduction to how to
+get started.
 
 ## Lean's notation for logic.
 
