@@ -57,6 +57,8 @@ which you type in on the left hand side of the screen.
 # Tactics you will need.
 
 To do logic problems in Lean you need to know some basic tactics.
+Remember that when applying several tactics, you should put a comma
+after each one.
 
 ## Tactics for sheet 1.
 
@@ -81,7 +83,7 @@ hP : P
 
 Variant: `intros` can be used to introduce
 more than one assumption at once. Don't forget
-to name your hypotheses, e.g. `intros hP hQ`.
+to name your hypotheses, e.g. `intros hP hQ` if your goal is `P → Q → <something else>`.
 
 ## The `exact` tactic
 
@@ -101,8 +103,8 @@ will close your goal.
 Note: `exact P` does not work. Don't confuse
 the *statement* `P` with its *proof* `hP`.
 
-Note: The `assumption` tactic will also work. That means "solve the goal,
-because its proof is one of our assumptions". 
+Variant: The `assumption` tactic closes a goal if its proof is any one of the assumptions
+in the tactic state. 
 
 ## The `apply` tactic
 
@@ -126,15 +128,15 @@ hPQ : P → Q
 
 The `apply` tactic is useful for *arguing backwards*. It reduces the goal to a potentially easier goal, without changing any hypotheses.
 
-## Sheet 1 cheat sheet
+# Sheet 1 cheat sheet
 
-Here's which tactic to use in order to make progress with a given proposition.
+Here's which tactic to try if you want to use a certain proposition as your next move.
 
 | Form of proposition | In the goal? | Hypothesis named `h`? |
 |---------------------|--------------|-----------------------|
 | `P → Q`             | `intro hP`   |             `apply h` |
 
-## Tactics for sheet 2
+# Tactics for sheet 2
 
 ## The `trivial` tactic
 
@@ -177,16 +179,16 @@ h : false
 
 then you can solve the level with `exfalso` followed by `exact h`.
 
-## Sheet 2 cheat sheet
+# Sheet 2 cheat sheet
 
-Here's which tactic to use in order to make progress with a given proposition.
+Here's which tactic to try if you want to use a certain proposition as your next move.
 
-| Form of proposition | In the goal?       | Hypothesis named `h`? |
-|---------------------|--------------------|-----------------------|
-| `true`              | `trivial`          | just ignore it        |
-| `false`             | use something else | `exfalso`             |
+| Form of proposition | In the goal?       | Hypothesis named `h`?    |
+|---------------------|--------------------|--------------------------|
+| `true`              | `trivial`          | can't be used            |
+| `false`             | can't be used      | `exfalso` then `exact h` |
 
-## Tactics for sheet 3
+# Tactics for sheet 3
 
 ## The `change` tactic
 
