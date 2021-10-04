@@ -4,8 +4,8 @@ There are three example sheets in Part 1 of IUM 2021. The first is on logic and 
 
 I have divided the tutorial up into four sections.
 
-* [logic](src/2021/logic/README.md)
-* [sets](src/2021/sets/README.md)
-* [functions](src/2021/functions/README.md)
-* [relations](src/2021/relations/README.md)
+* [logic](logic/README.md)
+* [sets](sets/README.md)
+* [functions](functions/README.md)
+* [relations](relations/README.md)
 
