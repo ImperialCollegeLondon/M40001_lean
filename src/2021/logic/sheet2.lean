@@ -34,12 +34,12 @@ begin
   sorry
 end
 
-example : false → false :=
+example : false → true :=
 begin
   sorry
 end
 
-example : false → true :=
+example : false → false :=
 begin
   sorry
 end
@@ -51,7 +51,7 @@ end
 
 example : false → P :=
 begin
-  sorry,
+  sorry
 end
 
 example : true → false → true → false → true → false :=
