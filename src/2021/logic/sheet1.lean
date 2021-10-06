@@ -21,6 +21,11 @@ following tactics:
 * `exact`
 * `apply`
 
+Rules of thumb:
+1) If your goal is `P → Q` then `intro hP` will make progress.
+2) If your goal is exactly hypothesis `h` then `exact h` will solve it.
+3) If your goal is `Q` and you have `h : P → Q` then `apply h` will
+make progress.
 -/
 
 -- Throughout this sheet, `P`, `Q` and `R` will denote propositions.
