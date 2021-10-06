@@ -18,13 +18,15 @@ and also the following tactics:
 * `change` (optional)
 * `by_contra`
 
-In Lean, the *definition* of `¬ P` is `P → false`, so whenever
-you see `¬ P` you can replace it in your head with `P → false`,
-and we already know how to deal with stuff like that from the
-previous sheets.
+Rules of thumb
+1) If your goal is `⊢ ¬ P` then `change P → false` will
+change it to `P → false`. Similarly if you have a hypothesis
+`h : ¬ P` then `change P → false at h` will change it. Note
+though that this is just for psychological purposes!
 
-If you don't like making that change in your head, you can
-use the `change` tactic to do it for you.
+2) If your goal is `⊢ P` and you want to prove it by contradiction,
+`by_contra h` will change the goal to `false` and add a hypothesis
+`h : ¬ P`.
 
 -/
 
@@ -34,5 +36,60 @@ variables (P Q R : Prop)
 
 example : ¬ P → (P → false) :=
 begin
+  sorry,
+end
+
+example : ¬ true → false :=
+begin
   sorry
+end
+
+example : false → ¬ true :=
+begin
+  sorry
+end
+
+example : ¬ false → true :=
+begin
+  sorry
+end
+
+example : true → ¬ false :=
+begin
+  sorry
+end
+
+example : false → ¬ P :=
+begin
+  sorry
+end
+
+example : P → ¬ P → false :=
+begin
+  sorry
+end
+
+example : P → ¬ (¬ P) :=
+begin
+  sorry
+end
+
+example : (P → Q) → (¬ Q → ¬ P) :=
+begin
+  sorry
+end
+
+example : ¬ ¬ false → false :=
+begin
+  sorry
+end
+
+example : ¬ ¬ P → P :=
+begin
+  sorry
+end
+
+example : (¬ Q → ¬ P) → (P → Q) :=
+begin
+  sorry,
 end
