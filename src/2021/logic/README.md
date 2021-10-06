@@ -288,6 +288,70 @@ Here's which tactic to try if you want to use a certain proposition as your next
 # Tactics for sheet 4
 
 ## The `cases` tactic
-(TODO)
+
+`cases` is a very general-purpose tactic for "deconstructing" hypotheses.
+If `h` is a hypothesis which somehow "bundles up" two pieces of information,
+then `cases h with h1 h2` will make hypothesis `h` vanish and will replace it
+with the two "components" which made the proof of `h` in the first place.
+
+### Example
+
+If you have a hypothesis
+
+```
+hPaQ : P ∧ Q
+```
+
+then
+
+`cases hPaQ with hP hQ,`
+
+will delete `hPaQ` and replace it with
+
+```
+hP : P
+hQ : Q
+```
+
 ## The `split` tactic
-(TODO)
+
+If your goal is an "and" goal:
+
+```
+⊢ P ∧ Q
+```
+
+then the `split` tactic will turn it
+into *two* goals
+
+
+```
+⊢ P
+```
+
+and
+
+```
+⊢ Q
+```
+
+It is best practice to indicate when you are working with two goals, either by using squiggly brackets like this:
+
+```
+...
+split,
+{ working on P,
+  end of proof of P },
+{ working on Q,
+  end of proof of Q },
+```
+
+or by using indentation like this:
+
+```
+split,
+  working on P,
+  end of proof of P,
+working on Q,
+...
+
