@@ -8,7 +8,7 @@ import tactic -- imports all the Lean tactics
 
 /-!
 
-# Logic in Lean, example sheet 5 : "iff" (`↔ `)
+# Logic in Lean, example sheet 5 : "iff" (`↔`)
 
 We learn about how to manipulate `P ↔ Q` in Lean.
 
