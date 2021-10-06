@@ -293,6 +293,8 @@ Here's which tactic to try if you want to use a certain proposition as your next
 If `h` is a hypothesis which somehow "bundles up" two pieces of information,
 then `cases h with h1 h2` will make hypothesis `h` vanish and will replace it
 with the two "components" which made the proof of `h` in the first place.
+An example of this occurring in logic sheet 4 is `h : P ∧ Q` which is a
+bundling of a proof of `P` and a proof of `Q`.
 
 ### Example
 
@@ -354,4 +356,105 @@ split,
   end of proof of P,
 working on Q,
 ...
+```
 
+# Sheet 4 cheat sheet
+
+Here's which tactic to try if you want to use a certain proposition as your next move.
+
+| Form of proposition | In the goal?       | Hypothesis named `h`?    |
+|---------------------|--------------------|--------------------------|
+| `P ∧ Q`                | `split`         | `cases h with hP hQ`     |
+
+# Tactics for sheet 5
+
+## The `refl` tactic.
+
+`refl` can be used to prove a goal of the form `⊢ P ↔ P`.
+
+(It can also be used to prove a goal of the form `⊢ P = P` but
+we don't see any such goals in the logic levels because we never
+see `=`)
+
+## The `cases` tactic (again)
+
+`cases` can also be used to deconstruct a hypothesis of the form `P ↔ Q`;
+it changes it into `P → Q` and `Q → P`. Note however that this might
+not be what you want to do! Hypotheses of the form `P ↔ Q` can also be used
+via the `rw` (rewrite) tactic.
+
+## The `rw` tactic.
+
+## The `rw` tactic
+
+The "rewrite" tactic can be used to "substitute in". The syntax is `rw h`, where `h` can be
+either a local hypothesis, or a theorem.
+However, `h` **must**  be either an equality or a bi-implication (an "iff"). You can use it on goals, but also on hypotheses (by adding `at`).
+
+### Examples
+
+1) If your tactic state is 
+
+```
+h : a = b
+⊢ a + 1 = 37
+```
+
+then `rw h` will change it to
+```
+h : a = b
+⊢ b + 1 = 37
+```
+
+2) If your assumptions contain 
+
+```
+h1 : P ↔ Q 
+h2 : P → (R ∨ ¬ S) 
+```
+
+then `rw h1 at h2` will change them to
+```
+h1 : P ↔ Q 
+h2 : Q → (R ∨ ¬ S) 
+```
+
+3) If `not_iff_imp_false` is a proof
+of `¬ P ↔ (P → false)` and your goal
+is 
+
+```
+⊢ ¬P → Q
+```
+
+then `rw not_iff_imp_false` will change
+your goal to
+
+```
+⊢ (P → false) → Q
+```
+
+4) If your tactic state is
+```
+h : P ↔ Q 
+⊢ ¬Q
+```
+
+then `rw h` will fail, because there are no
+`P`s to be changed into `Q`s, and `rw` works
+by default from left to right. To change the
+goal from `¬Q` to `¬P`, try `rw ← h`. You
+get the left arrow with `\l` (that's a little
+letter L, not a number 1 or letter I).
+
+### Note
+
+`rw` works (**only**) with hypotheses of the
+form `a = b` or `P ↔ Q`. A common mistake
+is for users to try to use it with *implications*,
+that is, hypotheses of the form `P → Q`. That is
+what the `apply` tactic is for.
+
+### Warning
+
+The `rw` tactic tries `refl` 
