@@ -16,8 +16,12 @@ To solve the levels on this sheet you will need to know all previous
 tactics, plus the following two new ones:
 
 * `trivial`
-* `cases`
+* `exfalso`
 
+Rules of thumb:
+1) If your goal is `⊢ true` then `trivial` will solve it. 
+2) If you have a hypothesis `h : false` then `exfalso, exact h`
+will solve it.
 -/
 
 -- Throughout this sheet, `P`, `Q` and `R` will denote propositions.
