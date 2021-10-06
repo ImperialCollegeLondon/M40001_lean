@@ -13,8 +13,7 @@ import tactic -- imports all the Lean tactics
 We learn about how to manipulate `P ↔ Q` in Lean.
 
 You'll need to know about the tactics from the previous sheets,
-and it will make your life much easier if you also know the
-following tactic:
+and also the following two new tactics:
 
 * `refl`
 * `rw`
