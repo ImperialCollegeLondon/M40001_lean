@@ -28,9 +28,7 @@ it around then you can do `rw hPiQ` which changes all `P`s to `Q`s.
 
 -/
 
--- Throughout this sheet, `P`, `Q` and `R` will denote propositions.
-
-variables (P Q R : Prop)
+variables (P Q R S : Prop)
 
 example : P ↔ P :=
 begin
@@ -58,6 +56,21 @@ begin
 end
 
 example : ((P ∧ Q) ∧ R) ↔ (P ∧ (Q ∧ R)) :=
+begin
+  sorry
+end
+
+example : P ↔ (P ∧ true) :=
+begin
+  sorry
+end
+
+example : false ↔ (P ∧ false) :=
+begin
+  sorry
+end
+
+example : (P ↔ Q) → (R ↔ S) → (P ∧ Q ↔ R ∧ S) :=
 begin
   sorry
 end
