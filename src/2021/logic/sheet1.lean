@@ -35,7 +35,7 @@ variables (P Q R : Prop)
 -- Here are the levels.
 
 /-- Every proposition implies itself. -/
-lemma identity : P → P :=
+example : P → P :=
 begin
   sorry
 end
@@ -55,15 +55,16 @@ begin
   sorry
 end
 
-/-- If we know `P`, and we also know `P → Q`, we can deduce `Q`. -/
-lemma modus_ponens : P → (P → Q) → Q :=
+/-- If we know `P`, and we also know `P → Q`, we can deduce `Q`. 
+This is called "Modus Ponens" by logicians. -/
+example : P → (P → Q) → Q :=
 begin
   sorry
 end
 
 /-- `→` is transitive. That is, if `P → Q` and `Q → R` are true, then
   so is `P → R`. -/
-lemma transitivity : (P → Q) → (Q → R) → (P → R) :=
+example : (P → Q) → (Q → R) → (P → R) :=
 begin
   sorry,
 end
