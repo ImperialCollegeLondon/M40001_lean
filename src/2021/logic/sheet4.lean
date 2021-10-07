@@ -57,6 +57,16 @@ begin
   sorry
 end
 
+example : P → P ∧ true :=
+begin
+  sorry
+end
+
+example : false → P ∧ false :=
+begin
+  sorry
+end
+
 /-- `∧` is transitive -/
 example : (P ∧ Q) → (Q ∧ R) → (P ∧ R) :=
 begin
