@@ -383,58 +383,56 @@ it changes it into `P → Q` and `Q → P`. Note however that this might
 not be what you want to do! Hypotheses of the form `P ↔ Q` can also be used
 via the `rw` (rewrite) tactic.
 
-## The `rw` tactic.
-
 ## The `rw` tactic
 
-The "rewrite" tactic can be used to "substitute in". The syntax is `rw h`, where `h` can be
-either a local hypothesis, or a theorem.
-However, `h` **must**  be either an equality or a bi-implication (an "iff"). You can use it on goals, but also on hypotheses (by adding `at`).
+If you have a hypothesis `h : P ↔ Q` then `rw h` will
+replaces all `P`s with `Q`s in the goal. You can use it
+on hypotheses too -- if `h : P ↔ Q` then `rw h at h1` will 
+replace all `P`s with `Q`s in `h1`.
 
 ### Examples
 
-1) If your tactic state is 
+1) If your tactic state looks like this:
 
 ```
-h : a = b
-⊢ a + 1 = 37
+h1 : P ↔ Q 
+⊢ P → (R ∨ ¬ S) 
 ```
 
-then `rw h` will change it to
+then `rw h1` will change the goal to
 ```
-h : a = b
-⊢ b + 1 = 37
+⊢ Q → (R ∨ ¬ S) 
 ```
 
-2) If your assumptions contain 
+This is logically valid because `h1` says that `P` and `Q` have
+the same truth value, so they can be regarded as equal.
+Similarly if your state contains two hypotheses
 
 ```
 h1 : P ↔ Q 
 h2 : P → (R ∨ ¬ S) 
 ```
 
-then `rw h1 at h2` will change them to
+then `rw h1 at h2` will change `h2` to 
 ```
-h1 : P ↔ Q 
-h2 : Q → (R ∨ ¬ S) 
-```
-
-3) If `not_iff_imp_false` is a proof
-of `¬ P ↔ (P → false)` and your goal
-is 
-
-```
-⊢ ¬P → Q
+h2 : Q → (R ∨ ¬ S)
 ```
 
-then `rw not_iff_imp_false` will change
-your goal to
+2) If your tactic state looks like this:
 
 ```
-⊢ (P → false) → Q
+h : P ↔ Q 
+⊢ P ∨ false ↔ Q ∨ false
 ```
 
-4) If your tactic state is
+then `rw h` will *close the goal*! The reason this happens
+is that the `rw` tactic optimistically tries `refl` every
+time it has finished running to see if it closes the goal.
+After the actual rewrite the goal in the above example
+is `⊢ Q ∨ false ↔ Q ∨ false` and `refl` will close
+this goal.
+
+3) If your tactic state is
 ```
 h : P ↔ Q 
 ⊢ ¬Q
@@ -450,11 +448,13 @@ letter L, not a number 1 or letter I).
 ### Note
 
 `rw` works (**only**) with hypotheses of the
-form `a = b` or `P ↔ Q`. A common mistake
+form `P ↔ Q` (or `a = b`, as will see later). A common mistake
 is for users to try to use it with *implications*,
 that is, hypotheses of the form `P → Q`. That is
 what the `apply` tactic is for.
 
 ### Warning
 
-The `rw` tactic tries `refl` 
+As mentioned above, the `rw` tactic tries `refl` after
+each invocation, so some goals might get closed earlier
+than you think. 
