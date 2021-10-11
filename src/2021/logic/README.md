@@ -376,13 +376,6 @@ Here's which tactic to try if you want to use a certain proposition as your next
 we don't see any such goals in the logic levels because we never
 see `=`)
 
-## The `cases` tactic (again)
-
-`cases` can also be used to deconstruct a hypothesis of the form `P ↔ Q`;
-it changes it into `P → Q` and `Q → P`. Note however that this might
-not be what you want to do! Hypotheses of the form `P ↔ Q` can also be used
-via the `rw` (rewrite) tactic.
-
 ## The `rw` tactic
 
 If you have a hypothesis `h : P ↔ Q` then `rw h` will
@@ -458,3 +451,43 @@ what the `apply` tactic is for.
 As mentioned above, the `rw` tactic tries `refl` after
 each invocation, so some goals might get closed earlier
 than you think. 
+
+## The `cases` and `split` tactics (again)
+
+`P ∧ Q` and `P ↔ Q` are formally quite similar -- they both package up
+two facts into one piece of information. The term `P ∧ Q` packages up
+proofs of `P` and `Q`. Similarly, the term `P ↔ Q` packages up proofs
+of `P → Q` and `Q → P`. 
+
+If your goal is
+```
+⊢ P ↔ Q
+```
+
+then `split` will change it into two goals `⊢ P → Q` and `⊢ Q → P`.
+
+If however you have a hypothesis
+```
+h : P ↔ Q
+```
+
+then `cases h with hPiQ hQiP` will change it into two hypotheses
+`hPiQ : P → Q` and `hQiP :  Q → P`.
+
+## Important note
+
+Note however that in contrast to the `and` case, where `cases` is almost
+certainly what you want to do with `h : P ∧ Q`, a bi-implication
+hypothesis `h : P ↔ Q` can be used by the `rw` tactic. So knowing
+when to deconstruct them is something of an art.
+
+# Sheet 5 cheat sheet
+
+Here's which tactic to try if you want to use a certain proposition as your next move.
+
+| Form of proposition | In the goal?       | Hypothesis named `h`?    |
+|---------------------|--------------------|--------------------------|
+| `P ↔ Q`                | `split`         | `cases h...` or `rw h`   |
+
+# Tactics for sheet 6
+
