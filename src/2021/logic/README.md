@@ -487,7 +487,38 @@ Here's which tactic to try if you want to use a certain proposition as your next
 
 | Form of proposition | In the goal?       | Hypothesis named `h`?    |
 |---------------------|--------------------|--------------------------|
-| `P ↔ Q`                | `split`         | `cases h...` or `rw h`   |
+| `P ↔ Q`             | `split`            | `cases h...` or `rw h`   |
 
 # Tactics for sheet 6
 
+## `left` and `right`
+
+If your goal is
+
+```
+⊢ P ∨ Q
+```
+
+then `left` changes the goal to `⊢ P`. The logic is that `P` implies `P ∨ Q`
+so we can `apply` this implication. Similarly `right` changes the goal to `⊢ Q`
+
+## cases (revisited)
+
+If you have a hypothesis
+
+```
+h : P ∨ Q
+```
+
+then `cases h with hP hQ` changes your goal into two goals, one
+with a hypothesis `hP : P` and the other with `hQ : Q`. The logic is
+that we know that one of `P` or `Q` is true, so we can split into
+two cases.
+
+# Sheet 6 cheat sheet
+
+Here's which tactic to try if you want to use a certain proposition as your next move.
+
+| Form of proposition | In the goal?       | Hypothesis named `h`?    |
+|---------------------|--------------------|--------------------------|
+| `P ∨ Q`             | `left` or `right`  | `cases h with hP hQ`    |
