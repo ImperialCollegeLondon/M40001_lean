@@ -21,6 +21,7 @@ can try these levels online; here are the links
 * [Logic sheet 3](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet3.lean)
 * [Logic sheet 4](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet4.lean)
 * [Logic sheet 5](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet5.lean)
+* [Logic sheet 6](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet6.lean)
 
 and if you're stuck then either skip down to "Tactics you will need" or watch a short video or two (for example [this one](https://www.youtube.com/watch?v=kTQZiyniYYI)) where I give an introduction to how to
 get started.
