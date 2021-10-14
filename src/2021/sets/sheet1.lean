@@ -143,7 +143,7 @@ example : (A ∪ B) ∩ (C ∪ D) = (A ∩ C) ∪ (B ∩ C) ∪ (A ∩ D) ∪ (B
 begin
   sorry,
 end
-
+ 
 /-
 
 ## Top tip
@@ -164,4 +164,3 @@ are already in Lean's maths library). Cut and paste the example
 below this comment to see `library_search` in action. Click on the blue output
 of "Try this:" to replace `library_search` with what it found. 
 -/
-
