@@ -52,12 +52,13 @@ begin
   sorry
 end
 
-example : (∀ x, x ∈ A ∧ x ∈ B) → (∀ x, x ∈ B ∧ x ∈ A) :=
+example : (∀ x, x ∈ A ∧ x ∈ B) → (∀ y, y ∈ B ∧ y ∈ A) :=
 begin
   sorry
 end
 
-example : (∀ x, x ∈ A ∨ x ∈ B) → (∀ y, y ∈ B ∨ y ∈ A) :=
+example : (∀ x, x ∈ A → x ∈ B) → (∀ y, y ∈ B → y ∈ C) →
+  (∀ z, z ∈ A → z ∈ C) :=
 begin
   sorry
 end
