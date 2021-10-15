@@ -1,0 +1,9 @@
+
+
+--## for later sheets
+
+example : {z : ℕ | z^2 < 1000} ∩ {z : ℕ | z^3 > 37} =
+  {z : ℕ | z^2<1000 ∧ z^3>37} := rfl
+
+example : A ⊆ B → B ⊆ A → A = B := antisymm
+example : A = B ↔ ∀ x, x ∈ A ↔ x ∈ B := set.ext_iff
