@@ -5,7 +5,6 @@ Author : Kevin Buzzard
 -/
 
 import tactic -- imports all the Lean tactics
-import data.set.basic
 
 /-!
 
