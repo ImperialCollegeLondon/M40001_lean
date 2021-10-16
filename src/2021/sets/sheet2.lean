@@ -17,12 +17,12 @@ of, it's `∅ : set X`.
 
 At the other extreme, the subset of `X` containing all the terms of type `X`
 is...well...mathematicians would just call it `X`, but `X` is a type, and
-if we want a set it's called `set.univ : set X`, or just `univ : set X` if
+so if we want a set it's called `set.univ : set X`, or just `univ : set X` if
 we have opened the `set` namespace. Let's do that now.
 
 -/
 
---open set
+open set
 
 -- set up variables
 variables
@@ -33,58 +33,43 @@ variables
 /-
 
 If `x : X` then `x ∈ ∅` is *by definition* `false`, and `x ∈ univ` is
-*by definition* `true`. 
+*by definition* `true`. So you can use the `change` tactic to change
+between these things, for example if your goal is
+
+```
+⊢ x ∈ univ
+```
+
+then `change true` will change the goal to
+
+```
+⊢ true
+```
+
+and you can now prove this goal with `trivial`. However you can prove
+it with `trivial` even without `change`ing it.
 
 -/
 
-example (X : Type) (A : set X) : A = { x : X | x ∈ A } := rfl
-
 open set
 
--- TODO -- ask on Zulip about why autocomplete doesn't work if `open set`
--- and `set.mem_empty`
-
-example : x ∈ (∅ : set X) = false :=
-begin
-  rw set.mem_empty,
-end
-
-example : set X = (X → Prop) := rfl
-
-theorem foo (P Q : Prop) : (P ↔ Q) ↔ (P = Q) :=
-begin
-  simp only [eq_iff_iff],
-end
-
-
-#print axioms foo
-
-
-#exit
--- You can start this one with `intro x`
-example : ∀ x : X, x ∈ A → x ∈ A :=
-begin
-  sorry,
-end
-
-example : ∀ x : X, (x ∈ A ∧ x ∈ B) → x ∈ A :=
+example : x ∈ (univ : set X) := 
 begin
   sorry
 end
 
--- for this one if you start with `intros h x` then you might well
--- need `specialize h x` later on. This is how to use hypotheses with `∀` in.
-example : (∀ x, x ∈ A ∧ x ∈ B) → (∀ x, x ∈ A) :=
+example : x ∈ (∅ : set X) → false :=
 begin
   sorry
 end
 
-example : (∀ x, x ∈ A ∧ x ∈ B) → (∀ x, x ∈ B ∧ x ∈ A) :=
+example : ∀ x : X, x ∈ A → x ∈ (univ : set X) :=
 begin
   sorry
 end
 
-example : (∀ x, x ∈ A ∨ x ∈ B) → (∀ y, y ∈ B ∨ y ∈ A) :=
+example : ∀ x : X, x ∈ (∅ : set X) → x ∈ A :=
 begin
   sorry
 end
+
