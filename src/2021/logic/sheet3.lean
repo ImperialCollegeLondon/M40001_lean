@@ -27,7 +27,7 @@ and also the following tactics:
 * `by_contra`
 * `by_cases`
 
-### change
+### The `change` tactic
 
 The `change` tactic changes a goal to a goal which
 is *equal to it by definition*. The example you need to know
@@ -41,13 +41,13 @@ Note that this tactic is just for psychological purposes. If you finish
 a proof which uses this tactic, try commenting out the `change` lines
 and note that it doesn't break.
 
-### `by_contra`
+### The `by_contra` tactic
 
 If your goal is `⊢ P` and you want to prove it by contradiction,
 `by_contra h,` will change the goal to `false` and add a hypothesis
 `h : ¬ P`.
 
-### `by_cases`
+### The `by_cases` tactic
 
 If `P : Prop` is a true-false statement then `by_cases hP : P,`
 turns your goal into two goals, one with hypothesis `hP : P`

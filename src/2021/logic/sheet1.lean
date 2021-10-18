@@ -23,17 +23,17 @@ following tactics:
 * `exact`
 * `apply`
 
-### intro
+### The `intro` tactic
 
 If your goal is `⊢ P → Q` then `intro hP,` will intrduce a
 hypothesis `hP : P` and change the goal to `⊢ Q`.
 
-### exact
+### The `exact` tactic
 
 If your goal is `⊢ P` and you have a hypothesis `h : P`
 then `exact h,` will solve it.
 
-### apply
+### The `apply` tactic
 
 If your goal is `⊢ Q` and you have `h : P → Q` then `apply h,` will
 change the goal to `⊢ P`.

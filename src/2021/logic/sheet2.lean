@@ -20,11 +20,11 @@ tactics, plus the following two new ones:
 * `trivial`
 * `exfalso`
 
-### trivial
+### The `trivial` tactic
 
 If your goal is `⊢ true` then `trivial,` will solve it. 
 
-### exfalso
+### The `exfalso` tactic
 
 The tactic `exfalso,` turns any goal `⊢ P` into `⊢ false`. 
 This is mathematically valid because `false` implies any goal.
