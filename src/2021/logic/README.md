@@ -277,9 +277,16 @@ h : ¬P
 
 It is a "proof by contradiction" tactic. 
 
+## The `by_cases` tactic
+
+If `P : Prop` is a true-false statement, then `by_cases hP : P` will
+turn your goal into two goals, one with a hypothesis `hP : P` and
+the other with a hypothesis `hP : ¬P`.
+
 # Sheet 3 cheat sheet
 
-Here's which tactic to try if you want to use a certain proposition as your next move.
+Here's which tactic to try if you want to use a certain proposition as your
+next move.
 
 | Form of proposition | In the goal?       | Hypothesis named `h`?    |
 |---------------------|--------------------|--------------------------|
