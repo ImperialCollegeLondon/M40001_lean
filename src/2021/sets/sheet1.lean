@@ -13,18 +13,39 @@ import tactic -- imports all the Lean tactics
 A lot of questions about sets can be reduced to questions about logic.
 We explain how to do this in Lean.
 
+All the sets we consider on this and the next few sheets will all be
+subsets of an underlying set `X`, which is our "universe" where all
+the maths we do will take place. This underlying set `X` is called a "type" in
+Lean. It plays the role of a "universe" -- every element we consider will
+always be an element of `X`, and every subset we consider will
+be a subset of `X`.
+
+Notation: elements of `X` are called *terms* of the type `X` and the
+notation is `x : X`. All the variables `x`, `y` and `z` which appear in this
+sheet will always be terms of type `X`, i.e. elements of the set `X`
+if you want to think set-theoretically.
+
+All the sets `A`, `B`, `C` etc we consider will be subsets of `X`. 
+If `x : X` then `x` may or may not be an element of `A`, `B`, `C`,
+but it will always be an element of `X`.
+
+## Tactics
+
 Tactics you will need to know for this sheet:
 
 * `intro` (it works for `∀` goals as well as for `P → Q`)
 * `specialize`
 
-All our sets on this sheet will be subsets of a big underlying set `X`,
-which plays the role of a "universe". In Lean such a universe is
-called a "type", not a set. So `X` will be a type, all our sets
-`A`, `B`, `C` etc will be subsets of `X`, and all our elements
-`x`, `y`, `z` etc will be what is called "terms of type `X`". In other
-words, they may or may not be elements of `A`, `B`, `C` but they will
-definitely all be elements of `X`.
+### The `intro` tactic
+
+If the goal is `∀ x, P(x)` then `intro a,` lets `a` be an arbitrary
+element of `X` (or, more precisely, an arbitrary term of type `X`)
+and changes the goal to `P(a)`.
+
+### The `specialize` tactic
+
+If we have a hypothesis `h : ∀ x, P(x)` and we have a term `a : X`
+then `specialize h a,` changes `h` to `h : P(a)`.
 
 -/
 
