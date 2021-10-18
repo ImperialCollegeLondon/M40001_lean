@@ -12,6 +12,12 @@ import tactic -- imports all the Lean tactics
 
 We learn about how to manipulate `¬ P` in Lean.
 
+# Important : the definition of `¬ P`
+
+In Lean, `¬ P` is *defined* to mean `P → false`. So `¬ P` and `P → false`
+are *the same thing* and can be used interchangeably. You can change
+from one to the other for free.
+
 ## Tactics
 
 You'll need to know about the tactics from the previous sheets,
