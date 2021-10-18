@@ -12,16 +12,23 @@ import tactic -- imports all the Lean tactics
 
 We learn about the `true` and `false` propositions.
 
+## Tactics you will need
+
 To solve the levels on this sheet you will need to know all previous
 tactics, plus the following two new ones:
 
 * `trivial`
 * `exfalso`
 
-Rules of thumb:
-1) If your goal is `⊢ true` then `trivial` will solve it. 
-2) If you have a hypothesis `h : false` then `exfalso, exact h`
-will solve it.
+### trivial
+
+If your goal is `⊢ true` then `trivial,` will solve it. 
+
+### exfalso
+
+The tactic `exfalso,` turns any goal `⊢ P` into `⊢ false`. 
+This is mathematically valid because `false` implies any goal.
+
 -/
 
 -- Throughout this sheet, `P`, `Q` and `R` will denote propositions.
