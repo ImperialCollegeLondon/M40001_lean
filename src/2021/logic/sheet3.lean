@@ -12,21 +12,40 @@ import tactic -- imports all the Lean tactics
 
 We learn about how to manipulate `¬ P` in Lean.
 
+## Tactics
+
 You'll need to know about the tactics from the previous sheets,
 and also the following tactics:
 
 * `change` (optional)
 * `by_contra`
+* `by_cases`
 
-Rules of thumb
-1) If your goal is `⊢ ¬ P` then `change P → false` will
+### change
+
+The `change` tactic changes a goal to a goal which
+is *equal to it by definition*. The example you need to know
+is that `¬ P` and `P → false` are equal by definition.
+
+If your goal is `⊢ ¬ P` then `change P → false,` will
 change it to `P → false`. Similarly if you have a hypothesis
-`h : ¬ P` then `change P → false at h` will change it. Note
-though that this is just for psychological purposes!
+`h : ¬ P` then `change P → false at h,` will change it to `h : P → false`.
 
-2) If your goal is `⊢ P` and you want to prove it by contradiction,
-`by_contra h` will change the goal to `false` and add a hypothesis
+Note that this tactic is just for psychological purposes. If you finish
+a proof which uses this tactic, try commenting out the `change` lines
+and note that it doesn't break.
+
+### `by_contra`
+
+If your goal is `⊢ P` and you want to prove it by contradiction,
+`by_contra h,` will change the goal to `false` and add a hypothesis
 `h : ¬ P`.
+
+### `by_cases`
+
+If `P : Prop` is a true-false statement then `by_cases hP : P,`
+turns your goal into two goals, one with hypothesis `hP : P`
+and the other with hypothesis `hP : ¬ P`.
 
 -/
 
