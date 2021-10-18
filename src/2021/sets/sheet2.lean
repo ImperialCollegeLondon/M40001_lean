@@ -33,7 +33,8 @@ if you like. But you don't have to.
 
 ## Tactics you will need
 
-TBC
+You've seen them already. `trivial` proves `⊢ true` and `exfalso`
+changes `⊢ P` to `⊢ false`.
 
 -/
 
