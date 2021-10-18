@@ -94,6 +94,8 @@ begin
   sorry,
 end
 
+-- If `h : P → Q → R` with goal `⊢ R` and you `apply h`, you'll get
+-- two goals! Note that tactics operate on only the first goal.
 example : (P → Q → R) → (P → Q) → (P → R) :=
 begin
   sorry
