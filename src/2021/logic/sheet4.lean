@@ -12,18 +12,23 @@ import tactic -- imports all the Lean tactics
 
 We learn about how to manipulate `P ∧ Q` in Lean.
 
+## Tactics
+
 You'll need to know about the tactics from the previous sheets,
 and also the following tactics:
 
 * `cases`
 * `split`
 
-Rules of thumb: 
-1) If `hPaQ : P ∧ Q` is a hypothesis, try `cases hPaQ with hP hQ`
-to decompose it into two hypotheses.
+## The `cases` tactic
 
-2) If `⊢ P ∧ Q` is in the goal, try `split.` You'll end up with
-two goals, `⊢ P` and `⊢ Q`. 
+If `h : P ∧ Q` is a hypothesis, then `cases h with hP hQ,`
+decomposes it into two hypotheses `hP : P` and `hQ : Q`.
+
+## The `split` tactic
+
+If `⊢ P ∧ Q` is in the goal, The `split` tactic will turn it into
+two goals, `⊢ P` and `⊢ Q`. NB tactics operate on the first goal only.
 
 -/
 
