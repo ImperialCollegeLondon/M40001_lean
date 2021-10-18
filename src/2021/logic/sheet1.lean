@@ -14,7 +14,7 @@ We learn about propositions, and implications `P → Q` between them. You can ge
 this arrow by typing `\to` or `\r`. Mathematicians usually write the
 implication arrow as `P ⇒ Q` but Lean prefers a single arrow.
 
-## Tactics
+## Tactics you will need
 
 To solve the levels on this sheet you will need to know how to use the
 following tactics:
