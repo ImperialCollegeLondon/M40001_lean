@@ -20,11 +20,11 @@ and also the following two new tactics:
 * `refl`
 * `rw`
 
-## The `refl` tactic
+### The `refl` tactic
 
 If your goal is `P ↔ P` then `refl,` will solve it.
 
-## The `rw` tactic
+### The `rw` tactic
 
 If `h : P ↔ Q` is a hypothesis, you can decompose it
 using `cases h with hPQ hQP,`. However, if you keep
