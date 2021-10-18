@@ -23,6 +23,21 @@ we have opened the `set` namespace. Let's do that now.
 
 open set
 
+/-
+
+## Important
+
+`x ∈ ∅` is *by definition* equal to `false` and `x ∈ univ` is *by definition*
+equal to `true`. You can use the `change` tactic to make these changes
+if you like. But you don't have to.
+
+## Tactics you will need
+
+TBC
+
+-/
+
+
 -- set up variables
 variables
   (X : Type) -- Everything will be a subset of `X`
