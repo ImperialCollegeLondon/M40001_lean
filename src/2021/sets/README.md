@@ -22,6 +22,12 @@ can try these levels online; here are the links
 
 * [Sets sheet 1](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Fsets%2Fsheet1.lean)
 
+* [Sets sheet 2](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Fsets%2Fsheet2.lean)
+
+* [Sets sheet 3](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Fsets%2Fsheet3.lean)
+
+* [Sets sheet 4](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Fsets%2Fsheet4.lean)
+
 and if you're stuck then either skip down to "Tactics you will need" or [watch the relevant videos in the playlist](https://www.youtube.com/playlist?list=PLVZep5wTamMmeF968ovIjd-uc1I6kdirJ).
 
 # Tactics you will need.
@@ -86,4 +92,33 @@ Here's which tactic to try if you want to use a certain proposition as your next
 
 | Form of proposition | In the goal? | Hypothesis named `h`? |
 |---------------------|--------------|-----------------------|
-| `∀ (a : X), ...`    | `intro x`    | `specialize h x`      |
+| `∀ (a : X), ...`    | `intro x,`   | `specialize h x,`     |
+
+## Tactics for sheet 2.
+
+No new tactics are needed.
+
+## Tactics for sheet 3.
+
+No new tactics are needed.
+
+## Tactics for sheet 4.
+
+### The `cases` tactic (again)
+
+We've seen `cases` being used before to take apart `h : P ∧ Q` and
+`h : P ∨ Q`. We can also use it to take apart hypotheses involving `∃`.
+
+If `h : ∃ t : X, P t` is a hypothesis (here `P t` is any proposition
+depending on a variable `t`, for example `t ∈ A`), then `cases h with x hx,`
+will give us `x : X` and `hx : P x`.
+
+### The `use` tactic
+
+If we have a goal `⊢ ∃ x : X, P x` and a term `a : X` which we know
+will work, then `use a,` will change the goal to `P a`. By the way,
+`use` tries `refl` afterwards so it might magically close goals early.
+
+| Form of proposition | In the goal? | Hypothesis named `h`? |
+|---------------------|--------------|-----------------------|
+| `∃ (a : X), ...`    | `use x,`     | `cases h with a ha,`  |
