@@ -12,7 +12,9 @@ import tactic -- imports all the Lean tactics
 
 We learn about propositions, and implications `P → Q` between them. You can get
 this arrow by typing `\to` or `\r`. Mathematicians usually write the
-implication arrow as `P ⇒ Q` but Lean prefers a straightforward single arrow.
+implication arrow as `P ⇒ Q` but Lean prefers a single arrow.
+
+## Tactics
 
 To solve the levels on this sheet you will need to know how to use the
 following tactics:
@@ -21,24 +23,47 @@ following tactics:
 * `exact`
 * `apply`
 
-Rules of thumb:
-1) If your goal is `P → Q` then `intro hP` will make progress.
-2) If your goal is exactly hypothesis `h` then `exact h` will solve it.
-3) If your goal is `Q` and you have `h : P → Q` then `apply h` will
-make progress.
+### intro
+
+If your goal is `⊢ P → Q` then `intro hP,` will intrduce a
+hypothesis `hP : P` and change the goal to `⊢ Q`.
+
+### exact
+
+If your goal is `⊢ P` and you have a hypothesis `h : P`
+then `exact h,` will solve it.
+
+### apply
+
+If your goal is `⊢ Q` and you have `h : P → Q` then `apply h,` will
+change the goal to `⊢ P`.
+
 -/
 
 -- Throughout this sheet, `P`, `Q` and `R` will denote propositions.
 
 variables (P Q R : Prop)
 
--- Here are the levels.
+-- Here are the levels. Delete the `sorry`s and replace them with
+-- comma-separated tactic proofs.
 
 /-- Every proposition implies itself. -/
 example : P → P :=
 begin
   sorry
 end
+
+/-
+
+The solution to this level: 
+
+example : P → P :=
+begin
+  intro hP,
+  exact hP,
+end
+
+-/
 
 /-
 
