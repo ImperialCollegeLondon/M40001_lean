@@ -12,19 +12,23 @@ import tactic -- imports all the Lean tactics
 
 We learn about how to manipulate `P ∨ Q` in Lean.
 
+## Tactics
+
 You'll need to know about the tactics from the previous sheets,
 and also the following tactics
 
 * `left` and `right`
 * `cases` (new functionality)
 
-Usage of new tactics:
+### The `left` and `right` tactics.
 
-1) If your goal is `⊢ P ∨ Q` then `left` will change it to `⊢ P`
-and `right` will change it to `⊢ Q`.
+If your goal is `⊢ P ∨ Q` then `left,` will change it to `⊢ P`
+and `right,` will change it to `⊢ Q`.
 
-2) If have `h : P ∨ Q` as a hypothesis then `cases h with hP hQ`
-will turn your goal into two goals, with `hP : P` as a hypothesis
+### The `cases` tactic again
+
+If we have `h : P ∨ Q` as a hypothesis then `cases h with hP hQ`
+will turn your goal into two goals, one with `hP : P` as a hypothesis
 and the other with `hQ : Q`.
 
 -/
