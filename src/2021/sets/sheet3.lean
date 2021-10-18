@@ -17,6 +17,10 @@ change between them using the `change` tactic, or you can just keep this
 in mind. For example, if you have a hypothesis `h : x ∉ A` and your goal
 is `false`, then `apply h` will work and will change the goal to `x ∈ A`.
 
+## Tactics
+
+You can do all these levels just with `intros`, `apply` and `exact`!
+
 -/
 
 open set
