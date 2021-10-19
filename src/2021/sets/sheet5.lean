@@ -76,3 +76,13 @@ example : B ⊆ A → C ⊆ A → B ∪ C ⊆ A :=
 begin
   sorry,
 end
+
+example : A ⊆ B → C ⊆ D → A ∪ C ⊆ B ∪ D :=
+begin
+  sorry,
+end
+
+example : A ⊆ B → C ⊆ D → A ∩ C ⊆ B ∩ D :=
+begin
+  sorry,
+end
