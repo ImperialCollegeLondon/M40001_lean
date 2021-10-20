@@ -181,8 +181,6 @@ the goal to `x ∈ A ↔ x ∈ B`.
 
 ## Tactics for sheet 7.
 
-### The `rw tactic
-
 ### The `rw` tactic
 
 If `h : A = B` or `h : P ↔ Q` is a proof of either an equality, or a
