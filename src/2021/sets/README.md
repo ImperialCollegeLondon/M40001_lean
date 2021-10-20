@@ -127,7 +127,45 @@ will work, then `use a,` will change the goal to `P a`. By the way,
 
 ## Tactics for sheet 5.
 
-No new tactics are needed.
+No new tactics are needed. Here are some which may make your proofs shorter.
+
+### The `rcases` tactic
+
+`rcases` is a souped-up version of `cases`. It has slightly different
+syntax. If you have a hypothesis `h : P ∧ Q` then `cases h with hP hQ`
+and `rcases h with ⟨hP, hQ⟩` do the same thing. However, if you
+have a hypothesis `h : P ∧ Q ∧ R` then Lean interprets it as `P ∧ (Q ∧ R)`
+so if you want to destruct it with `cases` you have to do
+
+```
+cases h with hP hQR,
+cases hQR with hQ hR
+```
+
+You can do this all in one go with `rcases h with ⟨hP, hQ, hR⟩`. The
+name `rcases` stands for "recursive cases".
+
+### The `rintro` tactic
+
+It's quite common to find yourself doing `intro` then `cases` or,
+more generally, `intro` then `rcases`. The `rintro` tactic does
+these both at once! So for example if your goal is
+
+```
+⊢ (P ∧ Q) → R
+```
+
+then `rintro ⟨hP, hQ⟩` leaves you at
+
+```
+hP : P
+hQ : Q
+⊢ R
+```
+
+i.e. the same as `intro h, cases h with hP hQ,`
+or `intro h, rcases h with ⟨hP, hQ⟩,`.
+
 
 ## Tactics for sheet 6.
 
