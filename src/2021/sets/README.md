@@ -30,6 +30,10 @@ can try these levels online; here are the links
 
 * [Sets sheet 5](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Fsets%2Fsheet5.lean)
 
+* [Sets sheet 6](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Fsets%2Fsheet6.lean)
+
+* [Sets sheet 7](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Fsets%2Fsheet7.lean)
+
 and if you're stuck then either skip down to "Tactics you will need" or [watch the relevant videos in the playlist](https://www.youtube.com/playlist?list=PLVZep5wTamMmeF968ovIjd-uc1I6kdirJ).
 
 # Tactics you will need.
