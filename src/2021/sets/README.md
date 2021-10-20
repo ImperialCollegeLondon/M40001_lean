@@ -211,5 +211,5 @@ and Lean will figure out what you meant.
 
 | Form of proposition | In the goal? | Hypothesis named `h`? |
 |---------------------|--------------|-----------------------|
-| `A = B`             | `ext x,`     | `rw h`,               |
+| `A = B`             | `ext x,`     | `rw h,`               |
 
