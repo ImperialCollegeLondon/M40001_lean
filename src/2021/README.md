@@ -4,10 +4,10 @@ I lecture Part I of Imperial's "Introduction to University Mathematics". There a
 
 Lean is a computer game which turns example sheet questions into levels of a puzzle game. Of course, you have to learn a bit of Lean before you can do them, so we won't dive straight into the example sheets; first I need to teach you how to prove basic stuff like "show that P implies P".
 
-The links below should hopefully serve as a tutorial for how to use Lean to do IUM problems. Start with the [logic](logic/README.md) link below.
+The links below should hopefully serve as a tutorial for how to use Lean to do IUM problems. Start with the "logic" link below.
 
-* [logic](logic/README.md)
-* [sets](sets/README.md)
-* [functions](functions/README.md)
-* [relations](relations/README.md)
+* [logic](logic/README.md) (finished)
+* [sets](sets/README.md) (finished)
+* [functions](functions/README.md) (in preparation)
+* [relations](relations/README.md) (in preparation)
 
