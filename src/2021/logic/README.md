@@ -11,6 +11,12 @@ interact with numbers like 0, 1, 2, .... Basic mathematics with propositions inv
 functions like `→`, `¬`, `∧`, `↔` and `∨` interact with
 propositions like `true` and `false`.
 
+In Lean we can prove mathematical theorems using *tactics* such as `intro`
+and `apply`. In this, the logic section of the IUM Lean resources, we will
+learn how to use about ten of Lean's basic tactics. They are all explained
+below, but they are also explained within the text when the need to use
+them arises.
+
 # Links for the impatient
 
 If you just want to dive in and haven't even got Lean installed on your computer, you

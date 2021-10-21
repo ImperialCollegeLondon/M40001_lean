@@ -57,12 +57,11 @@ union_comm A B : A ∪ B = B ∪ A -- this is the *proof*
 
 * `rw` ("rewrite")
 
-### The `rw` tactic
+### The `rw` tactic (again)
 
-If `h : A = B` or `h : P ↔ Q` is a proof of either an equality, or a
-logical equivalence, then `rw h,` changes all occurrences of the left
-hand side of `h` in the goal, into the right hand side. So `rw` is
-a "substitute in" command. 
+We've seen `rw h,` being used if `h : P ↔ Q`; it changed all `P`s to `Q`s
+in the goal. But `rw h,` also works for `h : A = B` -- it changes all
+`A`s to `B`s in the goal. So `rw` is a "substitute in" command. 
 
 After the substitution has occurred, Lean tries `refl` just to see if it works.
 For example if `A`, `B`, `C` are sets, and our context is
@@ -75,14 +74,22 @@ h : A = B
 then `rw h` changes the goal into `B ∩ C = B ∩ C` and then solves
 the goal automatically, because `refl` works.
 
+`rw` doesn't just work for hypotheses -- if there is a theorem 
+in Lean's maths library (like `inter_comm A B`, which is a proof
+that `A ∩ B = B ∩ A`) then you can `rw inter_comm A B` and it
+will change `A ∩ B` in the goal to `B ∩ A`.
+
 `rw` is a smart tactic. If the goal is
+
 ```
 ⊢ (A ∪ B) ∩ C = D
 ```
 
 and you want to change it to `⊢ (B ∪ A) ∩ C = D` then you don't
 have to write `rw union_comm A B`, you can write `rw union_comm`
-and Lean will figure out what you meant.
+and Lean will figure out what you meant. You can also write
+`rw union_comm A` or even `rw union_comm _ B` if you want to give
+it hints about exactly which union to commute.
 
 -/
 
