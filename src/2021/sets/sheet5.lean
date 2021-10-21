@@ -39,8 +39,8 @@ but if you use them they'll make your proofs shorter.
 ### The `rcases` tactic
 
 `rcases` is a souped-up version of `cases`. It has slightly different
-syntax. If you have a hypothesis `h : P ∧ Q` then `cases h with hP hQ`
-and `rcases h with ⟨hP, hQ⟩` do the same thing. However, if you
+syntax. If you have a hypothesis `h : P ∧ Q` then `cases h with hP hQ,`
+and `rcases h with ⟨hP, hQ⟩,` do the same thing. However, if you
 have a hypothesis `h : P ∧ Q ∧ R` then Lean interprets it as `P ∧ (Q ∧ R)`
 so if you want to destruct it with `cases` you have to do
 
@@ -49,8 +49,19 @@ cases h with hP hQR,
 cases hQR with hQ hR
 ```
 
-You can do this all in one go with `rcases h with ⟨hP, hQ, hR⟩`. The
+You can do this all in one go with `rcases h with ⟨hP, hQ, hR⟩,`. The
 name `rcases` stands for "recursive cases".
+
+`rcases` can also be used for `or` hypotheses too; here the syntax is that if
+we have
+```
+h : P ∨ Q
+```
+then `rcases h with (hP | hQ),` will turn our goal into two goals, one with
+`hP : P` and the other with `hQ : Q`.
+
+Even better, `rcases` works on `h : false`. Here there are no cases at all!
+So `rcases h with ⟨⟩,` solves the goal.
 
 ### The `rintro` tactic
 
@@ -62,7 +73,7 @@ these both at once! So for example if your goal is
 ⊢ (P ∧ Q) → R
 ```
 
-then `rintro ⟨hP, hQ⟩` leaves you at
+then `rintro ⟨hP, hQ⟩,` leaves you at
 
 ```
 hP : P
@@ -71,6 +82,22 @@ hQ : Q
 ```
 
 i.e. the same as `intro h, cases h with hP hQ,`
+
+You can introduce more than one hypothesis at once -- `rintro` generalises
+`intros` as well. For example if your goal is
+
+```
+⊢ P → Q ∧ R → S
+```
+
+then `rintro hP ⟨hQ, hR⟩,` turns it into
+
+```
+hP : P
+hQ : Q
+hR : R
+⊢ S
+```
 
 -/
 
