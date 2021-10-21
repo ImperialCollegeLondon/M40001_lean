@@ -1,4 +1,4 @@
-# Sets
+# Sets in Lean
 
 Lean uses type theory, not set theory. In short this means that
 every set must be a subset of a type. For example, the real

@@ -1,4 +1,4 @@
-# Logic
+# Logic in Lean
 
 By "logic" here we mean the study of propositions. A proposition is a
 true/false statement. For example 2+2=4, 2+2=5, and the statement
