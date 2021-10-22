@@ -12,7 +12,7 @@ a few more tactics to enable us to work with sets.
 ## Notation
 
 If `X` is a type we write `(X : Type)`. The type `set X` means
-the sets whose elements are in `X`, so you can these things
+the sets whose elements are in `X`, so you can view these things
 as subsets of `X`. If `A : set X` then `A` is a subset of `X`
 and if `x : X` is a term of type `X` (i.e., an element of `X`)
 then the notation `x ∈ A` means that `x` is an element of `A`.

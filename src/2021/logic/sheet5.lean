@@ -75,7 +75,7 @@ begin
   sorry
 end
 
-example : (P ↔ Q) → (R ↔ S) → (P ∧ Q ↔ R ∧ S) :=
+example : (P ↔ Q) → (R ↔ S) → (P ∧ R ↔ Q ∧ S) :=
 begin
   sorry
 end
