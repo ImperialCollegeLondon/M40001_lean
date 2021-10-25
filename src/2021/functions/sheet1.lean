@@ -133,54 +133,36 @@ begin
   -- you can start with `rw injective_def` if you like
   -- but because `injective_def` is true by definition
   -- you can just skip this line
-  rw injective_def,
-  intros a b h,
-  rw id_eval at h,
-  rw id_eval at h,
-  exact h,
+  sorry
 end
 
 example : surjective (id : X → X) :=
 begin
-  intro x,
-  use x,
-  refl,
+  sorry
 end
 
 example (f : X → Y) (g : Y → Z) (hf : injective f) (hg : injective g) :
   injective (g ∘ f) :=
 begin
-  intros a b h,
-  apply hf,
-  apply hg,
-  exact h,
+  sorry
 end
 
 example (f : X → Y) (g : Y → Z) (hf : surjective f) (hg : surjective g) :
   surjective (g ∘ f) :=
 begin
-  intro z,
-  specialize hg z, -- should I explain 
-  rcases hg with ⟨y, rfl⟩, -- should I explain the rfl hack here?
-  rcases hf y with ⟨x, rfl⟩,
-  use x,
+  sorry
 end
 
 -- This is a question on the IUM function problem sheet
 example (f : X → Y) (g : Y → Z) : 
   injective (g ∘ f) → injective f :=
 begin
-  intros h a b hab,
-  apply h,
-  rw comp_eval,
-  rw hab,
+  sorry
 end
 
 -- This is another one
 example (f : X → Y) (g : Y → Z) : 
   surjective (g ∘ f) → surjective g :=
 begin
-  intros h z,
-  rcases h z with ⟨x, rfl⟩,
-  use f x,
+  sorry
 end
