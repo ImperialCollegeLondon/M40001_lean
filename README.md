@@ -11,5 +11,4 @@ For the best user experience it's worth installing Lean on your own computer. In
 leanproject get ImperialCollegeLondon/M40001_lean
 ```
 
-
-
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/ImperialCollegeLondon/M40001_lean)
