@@ -13,13 +13,28 @@ import tactic -- imports all the Lean tactics
 In this sheet we'll learn how to manipulate the concepts of 
 injectivity and surjectivity in Lean.
 
+The notation for functions is the usual one in matheamtics:
+if `X` and `Y` are types, then `f : X → Y` denotes a function
+from `X` to `Y`. In fact what is going on here is that `X → Y`
+denotes the type of all functions from `X` to `Y`, and `f : X → Y`
+means that `f` is a term of type `X → Y`, i.e., a function
+from `X` to `Y`.
+
 One thing worth mentioning is that the simplest kind of function
 evaluation, where you have `x : X` and `f : X → Y`, doesn't need
-brackets: you can just write `f x` instead of `f(x)`. 
+brackets: you can just write `f x` instead of `f(x)`. You only
+need it when evaluating a function at a more complex object;
+for example if we also had `g : Y → Z` then we can't write
+`g f x` for `g(f(x))`, we have to write `g(f x)` otherwise
+`g` would eat `f` and get confused. Without brackets,
+a function just eats the next term greedily.
 
 ## Tactics
 
 ### More on `rcases` and `rintro` -- the `rfl` hack.
+
+You don't need to know the below trick but it can make your
+proofs shorter.
 
 There is a clever hack in Lean which sometimes enables you to
 do `cases` and `rw` all in one go. It works like this. Say
@@ -51,8 +66,10 @@ Instead of the rewrites, you can use the `subst` tactic to do them for you;
 and will then delete `ha` for you.
 
 But even better, there is an approach where `ha` is never even created.
-The tactic `rcases h1 with ⟨a, rfl⟩`, means "let `b` be `f a` by definition".
-It is a bit of a hack, but it's very convenient for making proofs shorter.
+The tactic `rcases h1 with ⟨a, rfl⟩`, means "let `b` be `f a` by definition",
+i.e. "replace all `b`s with `f a` and delete `b`". It is a bit of a hack
+(because it means you can't have a variable called `rfl`) but it's very
+convenient for making proofs shorter.
 
 ### More on `rw` -- syntactic equality.
 
@@ -132,7 +149,7 @@ example : injective (id : X → X) :=
 begin
   -- you can start with `rw injective_def` if you like
   -- but because `injective_def` is true by definition
-  -- you can just skip this line
+  -- you can delete it later :-)
   sorry
 end
 
