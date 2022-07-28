@@ -63,17 +63,16 @@ jobs:
         cat ../src/all.lean
         lean --path
 
-    - name: 📝 Export Lean symbol information
+    - name: 🔧 Build the lean code
       run: |
         cd doc-gen
         lean -v
-        # the json and diagnostics are emitted on stdout, but the json is always the last (very long) line.
-        lean src/entrypoint.lean > export.json || true
-        head -n -1 export.json
-        tail -n1 export.json > export2.json
-        rm export.json
-        mv export2.json export.json
-        head -c1000 export.json
+        lean --make src/entrypoint.lean
+
+    - name: 📝 Export Lean symbol information
+      run: |
+        cd doc-gen
+        lean --run src/entrypoint.lean > export.json
 
     - name: 📚 Build HTML docs
       run: |
