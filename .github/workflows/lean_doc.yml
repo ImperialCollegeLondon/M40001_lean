@@ -1,0 +1,89 @@
+on:
+  push:
+
+jobs:
+  build_docs:
+    runs-on: ubuntu-latest
+    name: Build docs
+    steps:
+
+    - name: 📁 Checkout project
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: 🔧 Install elan
+      run: |
+        set -o pipefail
+        curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- --default-toolchain none -y
+        ~/.elan/bin/lean --version
+        echo "$HOME/.elan/bin" >> $GITHUB_PATH
+
+    - name: 🐍 Install Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+
+    - name: 📁 Checkout Lean's doc-gen
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        repository: leanprover-community/doc-gen
+        path: doc-gen
+
+    - name: 🐍 Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r doc-gen/requirements.txt
+        ls doc-gen
+
+    - name: ✏️ Mangle paths for doc-gen
+      run: |
+        lean_version="$(sed '/^lean_version/!d;s/.*"\(.*\)".*/\1/' leanpkg.toml)"
+        mathlib_git_hash="$(sed '/rev/!d;s/.*"\([a-z0-9]*\)".*/\1/' leanpkg.toml)"
+        cd doc-gen
+        sed -i "s/rev = \"\S*\"/rev = \"$mathlib_git_hash\"/" leanpkg.toml
+        
+        # Force doc_gen project to match the Lean version used in CI.
+        # If they are incompatible, something in doc_gen will fail to compile,
+        # but this is better than trying to recompile all of mathlib.
+        elan override set "$lean_version"
+
+        leanproject get-mathlib-cache
+        echo -e "path ../src" >> leanpkg.path
+        cat leanpkg.path
+        (cd ../src;
+        find "." -name \*.lean -not -name all.lean \
+          | sed 's,^\./,,;s,\.lean$,»,;s,/,».«,g;s,^,import «,' \
+          | sort >./all.lean);
+        
+        mkdir ../docs
+        cp _target/deps/mathlib/docs/references.bib ../docs
+
+        cat ../src/all.lean
+        lean --path
+
+    - name: 🔧 Build the lean code
+      run: |
+        cd doc-gen
+        lean -v
+        lean --make src/entrypoint.lean
+
+    - name: 📝 Export Lean symbol information
+      run: |
+        cd doc-gen
+        lean --run src/entrypoint.lean > export.json
+
+    - name: 📚 Build HTML docs
+      run: |
+        cd doc-gen
+        python3 \
+          -c "import print_docs; del print_docs.extra_doc_files[:]; print_docs.copy_yaml_bib_files = lambda p: None; print_docs.library_link_roots['lean_problem_sheets'] = 'https://github.com/${GITHUB_REPOSITORY}/blob/$GITHUB_SHA/src/'; print_docs.main()" \
+          -r .. -w "https://${GITHUB_REPOSITORY%/*}.github.io/${GITHUB_REPOSITORY#*/}/" -t built-docs
+
+    - name: 🚀 Deploy
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        SINGLE_COMMIT: true
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: doc-gen/built-docs # The folder the action should deploy.
