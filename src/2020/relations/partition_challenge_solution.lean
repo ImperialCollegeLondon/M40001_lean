@@ -1,4 +1,5 @@
-import data.equiv.basic
+import logic.equiv.basic
+import data.set.basic
 
 structure partition (X : Type) :=
 (C : set (set X))
@@ -42,7 +43,7 @@ example (X : Type) : {R : X → X → Prop // equivalence R} ≃ partition X :=
       use x,
     end,
     Hunique := begin
-      intros c d hc hd hcd,
+      intros c hc d hd hcd,
       rw set.ne_empty_iff_nonempty at hcd,
       cases hcd with x hx,
       cases hc with a ha,
@@ -96,9 +97,7 @@ example (X : Type) : {R : X → X → Prop // equivalence R} ≃ partition X :=
       split,
       exact hxc,
       have hcd : c = d,
-      { apply P.Hunique c d,
-        use hc,
-        use hd,
+      { apply P.Hunique c hc d hd,
         rw set.ne_empty_iff_nonempty,
         use y,
         split,
@@ -151,7 +150,7 @@ example (X : Type) : {R : X → X → Prop // equivalence R} ≃ partition X :=
         dsimp at hy,
         rcases hy with ⟨e, he, hye, hxe⟩,
         convert hye, -- not taught
-        refine P_Hunique d e hd he _,
+        refine P_Hunique d hd e he _,
         rw set.ne_empty_iff_nonempty,
         use x,
         split;assumption
@@ -182,7 +181,7 @@ example (X : Type) : {R : X → X → Prop // equivalence R} ≃ partition X :=
         dsimp at h,
         rcases h with ⟨d, hd, hyd, hxd⟩,
         convert hyd,
-        apply P_Hunique c d hc hd,
+        apply P_Hunique c hc d hd,
         rw set.ne_empty_iff_nonempty,
         use x,
         split;assumption
