@@ -17,21 +17,6 @@ learn how to use about ten of Lean's basic tactics. They are all explained
 below, but they are also explained within the text when the need to use
 them arises.
 
-# Links for the impatient
-
-If you just want to dive in and haven't even got Lean installed on your computer, you
-can try these levels online; here are the links
-
-* [Logic sheet 1](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet1.lean)
-* [Logic sheet 2](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet2.lean)
-* [Logic sheet 3](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet3.lean)
-* [Logic sheet 4](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet4.lean)
-* [Logic sheet 5](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet5.lean)
-* [Logic sheet 6](https://leanprover-community.github.io/lean-web-editor/#url=https%3A%2F%2Fraw.githubusercontent.com%2FImperialCollegeLondon%2FM40001_lean%2Fmaster%2Fsrc%2F2021%2Flogic%2Fsheet6.lean)
-
-and if you're stuck then either skip down to "Tactics you will need" or [watch a short video or two](https://www.youtube.com/playlist?list=PLVZep5wTamMmeF968ovIjd-uc1I6kdirJ) where I give an introduction to how to
-get started. When you're done with these you can move onto [sets](https://github.com/ImperialCollegeLondon/M40001_lean/blob/master/src/2021/sets/README.md).
-
 ## Lean's notation for logic.
 
 In Lean, `P : Prop` means "`P` is a proposition", and `P → Q` is the
