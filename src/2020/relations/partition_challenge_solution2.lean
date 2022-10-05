@@ -1,6 +1,4 @@
-import data.equiv.basic
 import tactic
-
 
 /-!
 
@@ -28,12 +26,12 @@ variables {α : Type} {P : partition α} {X Y : set α}
 
 -- a more convenient way of putting it.
 theorem Hdisjoint' (hX : X ∈ P.C) (hY : Y ∈ P.C) : (X ∩ Y).nonempty → X = Y :=
-P.Hdisjoint X Y hX hY 
+P.Hdisjoint X hX Y hY 
 
 -- another way
 theorem Hdisjoint'' (hX : X ∈ P.C) (hY : Y ∈ P.C) {a : α} (haX : a ∈ X)
   (haY : a ∈ Y) : X = Y :=
-P.Hdisjoint _ _ hX hY ⟨a, haX, haY⟩
+P.Hdisjoint _ hX _ hY ⟨a, haX, haY⟩
 
 end partition
 
@@ -127,7 +125,7 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
       }
     end,
     Hdisjoint := begin
-      rintros c d ⟨x, rfl⟩ ⟨y, rfl⟩ ⟨z, hzx, hzy⟩,
+      rintros c ⟨x, rfl⟩ d ⟨y, rfl⟩ ⟨z, hzx, hzy⟩,
       cases R with R hR,
       erw ← class_eq hR hzx,
       erw ← class_eq hR hzy,
@@ -147,7 +145,7 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
       intros x y h C hC hyC,
       rcases P.Hcover x with ⟨D, hD, hxD⟩,
       convert hxD,
-      apply P.Hdisjoint _ _ hC hD,
+      apply P.Hdisjoint _ hC _ hD,
       use [y, hyC],
       exact h D hD hxD,
     },
