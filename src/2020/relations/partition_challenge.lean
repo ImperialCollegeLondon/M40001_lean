@@ -88,7 +88,7 @@ variables {α : Type} {P : partition α} {X Y : set α}
 theorem eq_of_mem (hX : X ∈ P.C) (hY : Y ∈ P.C) {a : α} (haX : a ∈ X)
   (haY : a ∈ Y) : X = Y :=
 -- Proof: follows immediately from the disjointness hypothesis.
-P.Hdisjoint _ _ hX hY ⟨a, haX, haY⟩
+P.Hdisjoint _ hX _ hY ⟨a, haX, haY⟩
 
 /-- If a is in two blocks X and Y, and if b is in X,
   then b is in Y (as X=Y) -/
@@ -213,8 +213,8 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
     Hdisjoint := begin
       cases R with R hR,
       -- If two equivalence classes overlap, they are equal.
-      show ∀ (X Y : set α), (∃ (a : α), X = cl R a) →
-        (∃ (b : α), Y = cl _ b) → (X ∩ Y).nonempty → X = Y,
+      show ∀ (X : set α), (∃ (a : α), X = cl R a) →
+        ∀ (Y : set α), (∃ (b : α), Y = cl _ b) → (X ∩ Y).nonempty → X = Y,
       sorry,
     end },
   -- Conversely, say P is an partition. 
