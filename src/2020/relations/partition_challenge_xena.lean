@@ -75,7 +75,7 @@ theorem eq_of_mem (hX : X ∈ P.C) (hY : Y ∈ P.C) {a : α}
   (haX : a ∈ X)
   (haY : a ∈ Y) : X = Y :=
 begin
-  have h := P.Hdisjoint X Y hX hY,
+  have h := P.Hdisjoint X hX Y hY,
   apply h,
   use a,
   split;
@@ -224,8 +224,8 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
     Hdisjoint := begin
       cases R with R hR,
       -- If two equivalence classes overlap, they are equal.
-      show ∀ (X Y : set α), (∃ (a : α), X = cl R a) →
-        (∃ (b : α), Y = cl R b) → (X ∩ Y).nonempty → X = Y,
+      show ∀ (X : set α), (∃ (a : α), X = cl R a) →
+        ∀ (Y : set α), (∃ (b : α), Y = cl R b) → (X ∩ Y).nonempty → X = Y,
       sorry,
     end },
   -- Conversely, say P is an partition. 
