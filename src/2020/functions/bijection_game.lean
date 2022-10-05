@@ -31,7 +31,7 @@ namespace countably_infinite
 example (a b : ℕ) : 2 * a = 2 * b → a = b := by 
 begin
   intro h,
-  apply mul_left_cancel' _ h,
+  apply mul_right_injective₀ _ h,
   norm_num,
 end
 
@@ -51,7 +51,7 @@ def bool_times_nat : bool × ℕ ≃ ℕ :=
       { simp },
       { have h2 := nat.mod_add_div (1 + 2 * n) 2,
         have h3 : 2 * ((1 + 2 * n) / 2) = 2 * n →
-          (1 + 2 * n) / 2 = n := λ h, mul_left_cancel' _ h,
+          (1 + 2 * n) / 2 = n := λ h, mul_right_injective₀ _ h,
         simp * at *, cc } },
     { simp }
   end
