@@ -21,7 +21,7 @@ leanproject get ImperialCollegeLondon/M40001_lean
 
 This will install the project on your computer, and then
 you can open the `M40001_lean` directory using VS Code
-and you should be up and running.
+and you should be up and running. Browse your way to the `2022` directory in `src` and you'll find some appropriate questions.
 
 ## Getting help if you're stuck (and an Imperial student)
 
