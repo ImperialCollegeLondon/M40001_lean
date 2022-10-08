@@ -25,4 +25,4 @@ and you should be up and running. Browse your way to the `2022` directory in `sr
 
 ## Getting help if you're stuck (and an Imperial student)
 
-I run a weekly Lean meeting for undergraduates called the Xena Project. It meets on Thursdays 5-8pm in the MLC and on Fridays 5-7pm on the Xena Discord (get access via Imperial student hub).
+I run a weekly Lean meeting for undergraduates called the Xena Project. In October to December 2022 it meets on Thursdays 5-8pm in the MLC and on Fridays 5-7pm on the Xena Discord (get access via Imperial student hub).
