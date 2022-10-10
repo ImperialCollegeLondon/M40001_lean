@@ -52,7 +52,7 @@ end
 example : Y.b ≠ Y.c :=
 begin
   intro h, -- x ≠ y is definitionally equal to (x = y) → false
-  cases h, -- no cases when they're equal!
+  cases h, -- there are no cases when they're equal!
 end
 
 
