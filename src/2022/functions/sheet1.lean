@@ -84,7 +84,7 @@ end
 example : injective (id : X → X) :=
 begin
   -- you can start with `rw injective_def` if you like,
-  -- and later you can `rw id_eval`, although remember that `rw` doesn't
+  -- and later you can `rw id_eval`, although `rw` doesn't
   -- work under binders like `∀`, so use `intro` first.
   sorry
 end
