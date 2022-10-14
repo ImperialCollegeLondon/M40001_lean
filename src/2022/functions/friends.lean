@@ -27,10 +27,13 @@ structure S :=
 (hf : f.injective)
 
 -- Implementation detail:
--- The way `S` works internally is is that an element `s` of `S` is a triple consisting
--- of a set `s.X`, a function `s.f : s.X → Z` and a proof `s.hf` that `s.f` is injective.
--- We will *abuse* notation by talking about elements of `S` as functions, but really
--- an element of `S` is a triple.
+-- The way `S` works internally is is that an element `a` of `S` is a triple consisting
+-- of a set `a.X`, a function `a.f : a.X → Z` and a proof `a.hf` that `a.f` is injective.
+
+-- However we really would like to think of an element of `S` as a function! So let's tell Lean
+-- that if we have an element `a` of `S`, to treat it as the function `a.f` from `a.X` to `Z` 
+instance : has_coe_to_fun S (λ a, a.X → Z) := ⟨λ a, a.f⟩
+
 
 -- Say elements `f : X → Z` and `g : Y → Z` of `S` are *friends* if there's a bijection
 -- `h` from `X` to `Y` such that forall `x` in `X`, `f(x)=g(h(x))`
@@ -68,7 +71,7 @@ end
 
 -- Now let's prove that if `f` is friends with `g` then the range of `f` is a
 -- subset of the range of `g`
-lemma friends_implies_subset : ∀ f g : S, friends f g → range f.f ⊆ range g.f :=
+lemma friends_implies_subset : ∀ f g : S, friends f g → range f ⊆ range g :=
 begin
   -- Let f : X → Z and g : Y → Z be friends and let `h : X → Y` be the bijection
   rintro ⟨X, f, hf⟩ ⟨Y, g, hg⟩ ⟨h, hfriends⟩,
@@ -85,7 +88,7 @@ end
 
 -- The big theorem: two injective functions f and g are friends iff they have
 -- the same range
-theorem friends_iff_same_range (f g : S) : friends f g ↔ range f.f = range g.f :=
+theorem friends_iff_same_range (f g : S) : friends f g ↔ range f = range g :=
 begin
   -- This is an iff so let's first go one way and then the other
   -- First let's prove that if a and b are friends then their ranges are the same
