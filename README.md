@@ -1,3 +1,12 @@
+# IMPORTANT
+
+Note that this is historical, Lean 3, code, corresponding in the Lean 3 version of Imperial College London's Intro to Uni Maths course
+as it evolved over the period 2019 to 2022. 
+
+The 2023 version of this course, written in Lean 4, will follow in time.
+
+and course notes from 2022
+
 # Introduction to University Mathematics (M40001/M40009) : additional Lean material
 
 Lean is not an official part of Imperial's Introduction to University Mathematics course, but a lot of the material in Parts I and II is really nice to do in Lean. 
