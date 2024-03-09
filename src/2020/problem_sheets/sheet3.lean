@@ -26,6 +26,8 @@ tactics which prove the result.
 
 import data.real.basic -- the real numbers
 
+namespace problem_sheets_2020_sheet_3
+
 /- Question 1. 
 
   Say $X$, $Y$ and $Z$ are sets, and $f:X\to Y$ and $g:Y\to Z$ are functions. In lectures we proved that if 
@@ -151,3 +153,5 @@ def friends {X Y Z : Type} (f : X → Z) (g : Y → Z) (hf : injective f) (hg : 
 
 lemma Q5 (X Y Z : Type) (f : X → Z) (g : Y → Z) (hf : injective f) (hg : injective g) :
 friends f g hf hg ↔ set.range f = set.range g := sorry
+
+end problem_sheets_2020_sheet_3

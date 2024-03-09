@@ -1,5 +1,6 @@
 import tactic
 
+namespace partition_challenge_solution2
 /-!
 
 # Definition and basic API for partitions
@@ -214,3 +215,4 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
     }
   end }
 
+end partition_challenge_solution2

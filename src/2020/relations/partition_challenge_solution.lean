@@ -1,6 +1,8 @@
 import logic.equiv.basic
 import data.set.basic
 
+namespace partition_challenge_solution
+
 structure partition (X : Type) :=
 (C : set (set X))
 (Hnonempty : ∀ c ∈ C, c ≠ ∅)
@@ -188,3 +190,5 @@ example (X : Type) : {R : X → X → Prop // equivalence R} ≃ partition X :=
       }
     }
   end }
+
+end partition_challenge_solution

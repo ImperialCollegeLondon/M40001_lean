@@ -1,5 +1,7 @@
 import tactic
 
+namespace random_reln_transitive2
+
 -- Let X be the set {A,B,C}
 inductive X
 | A : X
@@ -42,3 +44,4 @@ begin
   exact hPQ hP,
 end
 
+end random_reln_transitive2

@@ -1,4 +1,7 @@
 import tactic
+
+namespace relations_2022_pals
+
 /-
 
 # Solution to the `pals` question
@@ -109,24 +112,4 @@ begin
       rw [← hrel, hyp1], } }
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+end relations_2022_pals

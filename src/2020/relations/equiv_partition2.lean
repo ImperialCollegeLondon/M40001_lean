@@ -1,5 +1,6 @@
 import tactic
 
+namespace equiv_partition2
 /-
 
 data.equiv.basic  is the import which gives you the type `equiv X Y`, the type o
@@ -125,3 +126,5 @@ Q5 : now finally construct the term we seek.
 
 def partitions_biject_with_equivalence_relations :
   equiv (setoid X) (partition X) := sorry
+
+end equiv_partition2

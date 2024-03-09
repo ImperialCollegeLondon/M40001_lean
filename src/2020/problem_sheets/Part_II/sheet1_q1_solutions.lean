@@ -1,5 +1,7 @@
 import tactic
 
+namespace problem_sheets_2020_Part_II_sheet1_q1_solutions
+
 variables (x y : ℕ)
 
 open nat
@@ -43,3 +45,5 @@ begin
   { rw [mul_zero, zero_mul]},
   { rw [mul_succ, succ_mul, hd]},
 end
+
+end problem_sheets_2020_Part_II_sheet1_q1_solutions

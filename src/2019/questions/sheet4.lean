@@ -22,6 +22,8 @@ tactics which prove the result.
 
 import data.real.basic -- the real numbers
 
+namespace questions2019sheet4
+
 /- Question 1. 
 
 For each of the sets~$X$ and binary relations~$R$ below, figure out whether~$R$ is (a) reflexive, (b) symmetric, (c) antisymmetric, (d) transitive. 
@@ -207,3 +209,5 @@ lemma Q5 (X Y Z: Type) (f : X → Y) (g : X → Z) (hf : surjective f) (hg : sur
 begin
   sorry
 end
+
+end questions2019sheet4

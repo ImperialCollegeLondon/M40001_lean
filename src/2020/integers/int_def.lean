@@ -1,5 +1,7 @@
 import tactic
 
+namespace integers_2020
+
 /-- The equivalence relation on ℕ² such that equivalence classes are ℤ -/
 def nat2.R (a b : ℕ × ℕ) : Prop :=
 a.1 + b.2 = b.1 + a.2
@@ -372,3 +374,4 @@ instance : comm_ring myint :=
 
 end myint
 
+end integers_2020

@@ -26,6 +26,8 @@ tactics which prove the result.
 
 import data.real.basic -- need real numbers for Q5
 
+namespace problem_sheets_2020_sheet_2
+
 -- Q1 prove that ∩ is symmetric
 lemma question1 (α : Type) (X Y : set α) : X ∩ Y = Y ∩ X :=
 begin
@@ -131,3 +133,5 @@ lemma question5b_true : ∀ x ∈ (∅ : set ℕ), 2 + 2 = 5 :=
 begin
   sorry
 end 
+
+end problem_sheets_2020_sheet_2

@@ -1,5 +1,7 @@
 import tactic
 
+namespace partition_challenge
+
 /-!
 
 # The partition challenge!
@@ -280,3 +282,5 @@ example (α : Type) : {R : α → α → Prop // equivalence R} ≃ partition α
 leanproject get ImperialCollegeLondon/M40001_lean
 
 -/
+
+end partition_challenge

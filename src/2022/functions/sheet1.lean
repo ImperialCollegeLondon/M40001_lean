@@ -6,6 +6,7 @@ Author : Kevin Buzzard
 
 import tactic -- imports all the Lean tactics
 
+namespace functions_2022_sheet1
 /-!
 
 # Functions in Lean.
@@ -119,3 +120,5 @@ example (f : X → Y) (g : Y → Z) :
 begin
   sorry
 end
+
+end functions_2022_sheet1

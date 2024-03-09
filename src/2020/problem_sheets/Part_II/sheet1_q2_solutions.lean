@@ -1,5 +1,7 @@
 import tactic
 
+namespace problem_sheets_2020_Part_II_sheet2_q2_solutions
+
 variables (x y : ℕ)
 
 open nat
@@ -103,3 +105,4 @@ noncomputable definition Q3c : ℕ+ ≃ ℕ :=
   end
    }
 
+end problem_sheets_2020_Part_II_sheet2_q2_solutions

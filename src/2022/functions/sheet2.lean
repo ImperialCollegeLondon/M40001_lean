@@ -6,6 +6,8 @@ Author : Kevin Buzzard
 
 import tactic -- imports all the Lean tactics
 
+namespace functions_2022_sheet2
+
 /-
 
 # More on functions
@@ -74,3 +76,5 @@ example : ¬ (∀ X Y Z : Type, ∀ (f : X → Y) (g : Y → Z), surjective (g �
 begin
   sorry,
 end
+
+end functions_2022_sheet2

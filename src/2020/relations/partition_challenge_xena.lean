@@ -1,5 +1,7 @@
 import tactic
 
+namespace partition_challenge_xena
+
 /-!
 
 # The partition challenge!
@@ -297,3 +299,5 @@ folling in the sorrys.
 I will come around to help.
 
 -/
+
+end partition_challenge_xena

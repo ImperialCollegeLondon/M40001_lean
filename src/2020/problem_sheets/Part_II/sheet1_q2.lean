@@ -1,5 +1,7 @@
 import tactic
 
+namespace problem_sheets_2020_Part_II_sheet1_q2
+
 variables (x y z : ℕ)
 
 open nat
@@ -19,3 +21,4 @@ begin
   sorry
 end
 
+end problem_sheets_2020_Part_II_sheet1_q2

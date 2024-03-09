@@ -26,6 +26,8 @@ Prove that P ∨ Q → Q ∨ P.
 
 -/
 
+namespace problem_sheets_2020_sheet_1
+
 lemma question_one (P Q : Prop) : P ∨ Q → Q ∨ P :=
 begin
   sorry
@@ -139,3 +141,5 @@ contradiction (or, better, false.elim)
 
 The fifth question is harder. 
 -/
+
+end problem_sheets_2020_sheet_1

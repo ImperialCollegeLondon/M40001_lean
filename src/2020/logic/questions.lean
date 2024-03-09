@@ -5,6 +5,8 @@ Author : Kevin Buzzard
 -/
 import tactic
 
+namespace logic_2020_questions
+
 /-!
 # Logic
 
@@ -589,3 +591,5 @@ begin
 end
 
 end xena
+
+end logic_2020_questions
