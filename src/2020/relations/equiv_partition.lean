@@ -126,7 +126,7 @@ example : {p : set (set α) // is_partition p} ≃
     { intro hXp,
       have hX : X.nonempty,
         have h := hp.1,
-        rw ← set.ne_empty_iff_nonempty,
+        rw set.nonempty_iff_ne_empty,
         rintro rfl, contradiction,
       cases hX with b hbX,
       use b,

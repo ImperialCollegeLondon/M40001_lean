@@ -1,4 +1,4 @@
-import data.set.basic
+import data.set.image
 open function set
 
 theorem question5 (X Y Z : Type) (f : X → Z) (g : Y → Z) (hf : injective f) (hg : injective g) :

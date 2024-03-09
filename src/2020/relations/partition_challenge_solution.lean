@@ -30,7 +30,7 @@ example (X : Type) : {R : X → X → Prop // equivalence R} ≃ partition X :=
       intro c,
       intro hc,
       cases hc with x hx,
-      rw set.ne_empty_iff_nonempty,
+      rw ← set.nonempty_iff_ne_empty,
       use x,
       rw hx,
       exact mem_class R.2 x,
@@ -38,13 +38,13 @@ example (X : Type) : {R : X → X → Prop // equivalence R} ≃ partition X :=
     Hcover := begin
       intro x,
       use equivalence_class R x,
-      existsi _,
+      refine ⟨_, _⟩,
+      { use x },
       { exact mem_class R.2 x },
-      use x,
     end,
     Hunique := begin
       intros c hc d hd hcd,
-      rw set.ne_empty_iff_nonempty at hcd,
+      rw ← set.nonempty_iff_ne_empty at hcd,
       cases hcd with x hx,
       cases hc with a ha,
       cases hd with b hb,
@@ -98,7 +98,7 @@ example (X : Type) : {R : X → X → Prop // equivalence R} ≃ partition X :=
       exact hxc,
       have hcd : c = d,
       { apply P.Hunique c hc d hd,
-        rw set.ne_empty_iff_nonempty,
+        rw ← set.nonempty_iff_ne_empty,
         use y,
         split,
         use hyc,
@@ -151,7 +151,7 @@ example (X : Type) : {R : X → X → Prop // equivalence R} ≃ partition X :=
         rcases hy with ⟨e, he, hye, hxe⟩,
         convert hye, -- not taught
         refine P_Hunique d hd e he _,
-        rw set.ne_empty_iff_nonempty,
+        rw ← set.nonempty_iff_ne_empty,
         use x,
         split;assumption
       },
@@ -165,7 +165,7 @@ example (X : Type) : {R : X → X → Prop // equivalence R} ≃ partition X :=
     { intro hc,
       dsimp,
       have h := P_Hnonempty c hc,
-      rw set.ne_empty_iff_nonempty at h,
+      rw ← set.nonempty_iff_ne_empty at h,
       cases h with x hxc,
       use x,
       unfold equivalence_class,
@@ -182,7 +182,7 @@ example (X : Type) : {R : X → X → Prop // equivalence R} ≃ partition X :=
         rcases h with ⟨d, hd, hyd, hxd⟩,
         convert hyd,
         apply P_Hunique c hc d hd,
-        rw set.ne_empty_iff_nonempty,
+        rw ← set.nonempty_iff_ne_empty,
         use x,
         split;assumption
       }

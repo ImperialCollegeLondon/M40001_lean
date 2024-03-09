@@ -1,8 +1,8 @@
 [package]
 name = "lean_problem_sheets"
 version = "0.1"
-lean_version = "leanprover-community/lean:3.48.0"
+lean_version = "leanprover-community/lean:3.51.1"
 path = "src"
 
 [dependencies]
-mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "8a8470cc4d27ead7252b37f604f845096101a643"}
+mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "4e976107aa81b41822bd5bb2b15c90b1c8a2aa15"}
